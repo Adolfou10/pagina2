@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Computadora que se dibuja, se enciende y se desvanece">
+<style>
+  :root{--b:#5865f2;--g:#57f287;--c:#00b0f4;--o:#fda220;--f:#babcd9;--d:#2c2f33}
+  .cycle{animation:vanish 9s ease-in-out infinite;transform-origin:200px 150px}
+  .line{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 9s ease-in-out infinite}
+  .l2{animation-delay:.25s}.l3{animation-delay:.5s}.l4{animation-delay:.75s}
+  .screen{fill:#23272a;opacity:0;animation:on 9s ease-in-out infinite}
+  .glow{fill:#5865f2;opacity:0;animation:glow 9s ease-in-out infinite}
+  .bar{opacity:0;transform-box:fill-box;transform-origin:left center;animation:bar 9s ease-out infinite}
+  .b1{fill:#57f287;animation-delay:.15s}.b2{fill:#00b0f4;animation-delay:.3s}.b3{fill:#fda220;animation-delay:.45s}.b4{fill:#babcd9;animation-delay:.6s}
+  .fan{transform-box:fill-box;transform-origin:center;animation:spin 1.4s linear infinite}
+  .part-wrap{opacity:0;animation:fadein 9s ease-in-out infinite}
+  .led{opacity:0;animation:led 9s ease-in-out infinite}
+  .p{fill:#5865f2;opacity:0;animation:drift 9s ease-in infinite}
+  .p:nth-child(2n){fill:#57f287}.p:nth-child(3n){fill:#00b0f4}.p:nth-child(5n){fill:#fda220}
+  @keyframes draw{0%{stroke-dashoffset:1}28%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+  @keyframes on{0%,26%{opacity:0}34%,100%{opacity:1}}
+  @keyframes glow{0%,32%{opacity:0}40%{opacity:.28}60%{opacity:.18}100%{opacity:.18}}
+  @keyframes bar{0%,34%{opacity:0;transform:scaleX(0)}46%,100%{opacity:1;transform:scaleX(1)}}
+  @keyframes led{0%,38%{opacity:0}44%,100%{opacity:1}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes vanish{0%,66%{opacity:1;transform:none}86%{opacity:0;transform:translateY(-14px) scale(.96)}100%{opacity:0;transform:translateY(-14px) scale(.96)}}
+  @keyframes fadein{0%,64%{opacity:0}68%,88%{opacity:1}100%{opacity:0}}
+  @keyframes drift{0%,66%{opacity:0;transform:translate(0,0)}70%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y))}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}.line{stroke-dashoffset:0}.screen,.glow,.bar,.led{opacity:1}.glow{opacity:.18}.part-wrap{display:none}}
+</style>
+
+<!-- halo -->
+<circle cx="200" cy="150" r="130" fill="#5865f2" opacity=".08"/>
+
+<g class="cycle">
+  <!-- monitor -->
+  <rect class="screen" x="62" y="52" width="192" height="122" rx="10"/>
+  <rect class="glow" x="62" y="52" width="192" height="122" rx="10"/>
+  <rect class="line" pathLength="1" x="62" y="52" width="192" height="122" rx="10"/>
+  <path class="line l2" pathLength="1" d="M158 174v28M122 206h72"/>
+
+  <!-- contenido de pantalla -->
+  <rect class="bar b1" x="80" y="72" width="120" height="9" rx="4.5"/>
+  <rect class="bar b2" x="80" y="92" width="90" height="9" rx="4.5"/>
+  <rect class="bar b3" x="80" y="112" width="140" height="9" rx="4.5"/>
+  <rect class="bar b4" x="80" y="132" width="70" height="9" rx="4.5"/>
+  <circle class="led" cx="224" cy="150" r="5" fill="#57f287"/>
+
+  <!-- teclado -->
+  <rect class="line l3" pathLength="1" x="76" y="232" width="164" height="30" rx="7"/>
+  <path class="line l4" pathLength="1" d="M92 242h10M110 242h10M128 242h10M146 242h10M164 242h10M182 242h10M200 242h10M218 242h10M96 252h112"/>
+
+  <!-- torre -->
+  <rect class="screen" x="280" y="70" width="64" height="150" rx="9"/>
+  <rect class="line l2" pathLength="1" x="280" y="70" width="64" height="150" rx="9"/>
+  <g class="fan">
+    <circle class="line l3" pathLength="1" cx="312" cy="128" r="22"/>
+    <path class="line l4" pathLength="1" d="M312 128v-18M312 128l15.6 9M312 128l-15.6 9"/>
+  </g>
+  <path class="line l4" pathLength="1" d="M296 176h32M296 188h32"/>
+  <circle class="led" cx="296" cy="86" r="4" fill="#00b0f4"/>
+  <circle class="led" cx="312" cy="86" r="4" fill="#fda220"/>
+  <circle class="led" cx="328" cy="86" r="4" fill="#57f287"/>
+</g>
+
+<!-- partículas de disolución -->
+<g class="part-wrap">
+  <rect class="p" x="90"  y="80"  width="7" height="7" rx="2" style="--x:-30px;--y:-70px;animation-delay:0s"/>
+  <rect class="p" x="140" y="100" width="6" height="6" rx="2" style="--x:10px;--y:-90px;animation-delay:.1s"/>
+  <rect class="p" x="190" y="70"  width="8" height="8" rx="2" style="--x:30px;--y:-80px;animation-delay:.2s"/>
+  <rect class="p" x="230" y="120" width="6" height="6" rx="2" style="--x:50px;--y:-60px;animation-delay:.05s"/>
+  <rect class="p" x="300" y="100" width="7" height="7" rx="2" style="--x:40px;--y:-95px;animation-delay:.15s"/>
+  <rect class="p" x="320" y="170" width="6" height="6" rx="2" style="--x:60px;--y:-70px;animation-delay:.25s"/>
+  <rect class="p" x="110" y="150" width="8" height="8" rx="2" style="--x:-50px;--y:-60px;animation-delay:.3s"/>
+  <rect class="p" x="170" y="190" width="6" height="6" rx="2" style="--x:-10px;--y:-100px;animation-delay:.12s"/>
+  <rect class="p" x="100" y="240" width="7" height="7" rx="2" style="--x:-40px;--y:-80px;animation-delay:.22s"/>
+  <rect class="p" x="210" y="245" width="6" height="6" rx="2" style="--x:20px;--y:-110px;animation-delay:.08s"/>
+  <rect class="p" x="290" y="200" width="7" height="7" rx="2" style="--x:55px;--y:-85px;animation-delay:.18s"/>
+  <rect class="p" x="250" y="90"  width="6" height="6" rx="2" style="--x:25px;--y:-100px;animation-delay:.28s"/>
+</g>
+</svg>

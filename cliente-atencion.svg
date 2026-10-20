@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 340" width="480" height="340" role="img" aria-label="Un cliente conversa con el técnico de TECNODOLPHY">
+<style>
+  .t{font-family:Inter,Segoe UI,Arial,sans-serif;font-size:15px;font-weight:500}
+  .bub{opacity:0;transform-box:fill-box;transform-origin:center bottom}
+  .b1{animation:b1 11s ease-out infinite}
+  .b2{animation:b2 11s ease-out infinite}
+  .b3{animation:b3 11s ease-out infinite}
+  .typing{opacity:0;animation:typing 11s linear infinite}
+  .dot{animation:bounce .9s ease-in-out infinite}
+  .dot:nth-child(2){animation-delay:.15s}.dot:nth-child(3){animation-delay:.3s}
+  .heart{opacity:0;transform-box:fill-box;transform-origin:center;animation:heart 11s ease-out infinite}
+  .p1{animation:bob 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+  .p2{animation:bob 3.2s ease-in-out infinite;animation-delay:-1.6s;transform-box:fill-box;transform-origin:center bottom}
+  @keyframes b1{0%,3%{opacity:0;transform:scale(.6)}7%{opacity:1;transform:scale(1.04)}9%,92%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.96)}}
+  @keyframes typing{0%,20%{opacity:0}22%,33%{opacity:1}35%,100%{opacity:0}}
+  @keyframes b2{0%,34%{opacity:0;transform:scale(.6)}38%{opacity:1;transform:scale(1.04)}40%,92%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.96)}}
+  @keyframes b3{0%,58%{opacity:0;transform:scale(.6)}62%{opacity:1;transform:scale(1.04)}64%,92%{opacity:1;transform:scale(1)}98%,100%{opacity:0;transform:scale(.96)}}
+  @keyframes heart{0%,66%{opacity:0;transform:translateY(8px) scale(.4)}72%{opacity:1;transform:translateY(-4px) scale(1.15)}78%,92%{opacity:1;transform:translateY(-8px) scale(1)}98%,100%{opacity:0}}
+  @keyframes bounce{50%{transform:translateY(-5px)}}
+  @keyframes bob{50%{transform:translateY(-4px)}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}.bub,.heart{opacity:1}.typing{display:none}}
+</style>
+
+<!-- Burbuja 1: cliente -->
+<g class="bub b1">
+  <rect x="24" y="28" width="196" height="48" rx="16" fill="#5865f2"/>
+  <path d="M52 76l-8 16 24-16z" fill="#5865f2"/>
+  <text class="t" x="42" y="58" fill="#fff">Mi PC está muy lenta</text>
+</g>
+
+<!-- Escribiendo... (técnico) -->
+<g class="typing">
+  <rect x="300" y="100" width="76" height="44" rx="16" fill="#2c2f33"/>
+  <path d="M348 144l8 16-24-16z" fill="#2c2f33"/>
+  <circle class="dot" cx="324" cy="122" r="5" fill="#babcd9"/>
+  <circle class="dot" cx="338" cy="122" r="5" fill="#babcd9"/>
+  <circle class="dot" cx="352" cy="122" r="5" fill="#babcd9"/>
+</g>
+
+<!-- Burbuja 2: técnico -->
+<g class="bub b2">
+  <rect x="256" y="100" width="204" height="48" rx="16" fill="#2c2f33"/>
+  <path d="M430 148l8 16-24-16z" fill="#2c2f33"/>
+  <text class="t" x="274" y="130" fill="#fff">Te la dejo como nueva</text>
+</g>
+
+<!-- Burbuja 3: cliente -->
+<g class="bub b3">
+  <rect x="24" y="176" width="212" height="48" rx="16" fill="#5865f2"/>
+  <path d="M52 224l-8 16 24-16z" fill="#5865f2"/>
+  <text class="t" x="42" y="206" fill="#fff">¡Gracias! Quedó genial</text>
+</g>
+<path class="heart" d="M258 214c-6-5-12-9-12-15a7 7 0 0 1 12-4 7 7 0 0 1 12 4c0 6-6 10-12 15z" fill="#eb459e" transform="translate(0 0)"/>
+
+<!-- Cliente -->
+<g class="p1">
+  <path d="M30 340v-22a42 42 0 0 1 42-42h0a42 42 0 0 1 42 42v22z" fill="#fda220"/>
+  <circle cx="72" cy="258" r="26" fill="#f1c9a5"/>
+  <path d="M46 256a26 26 0 0 1 52 0c-8-8-22-12-34-8-6 2-14 4-18 8z" fill="#23272a"/>
+  <circle cx="63" cy="260" r="2.6" fill="#23272a"/><circle cx="81" cy="260" r="2.6" fill="#23272a"/>
+  <path d="M65 270q7 5 14 0" fill="none" stroke="#23272a" stroke-width="2.4" stroke-linecap="round"/>
+</g>
+
+<!-- Técnico -->
+<g class="p2">
+  <path d="M366 340v-22a42 42 0 0 1 42-42h0a42 42 0 0 1 42 42v22z" fill="#57f287"/>
+  <path d="M394 276l14 18 14-18z" fill="#23272a"/>
+  <circle cx="408" cy="258" r="26" fill="#d9a67f"/>
+  <path d="M382 254a26 26 0 0 1 52 0c-10-6-20-8-26-8s-16 2-26 8z" fill="#23272a"/>
+  <circle cx="399" cy="260" r="2.6" fill="#23272a"/><circle cx="417" cy="260" r="2.6" fill="#23272a"/>
+  <path d="M401 270q7 5 14 0" fill="none" stroke="#23272a" stroke-width="2.4" stroke-linecap="round"/>
+  <!-- auricular -->
+  <path d="M380 258a28 28 0 0 1 56 0" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+  <rect x="373" y="254" width="9" height="16" rx="4.5" fill="#fff"/>
+  <path d="M378 268q4 14 18 14" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+</g>
+</svg>
