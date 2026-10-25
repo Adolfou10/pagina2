@@ -13,14 +13,36 @@
 <meta property="og:image" content="https://adolfou10.github.io/pagina2/og-image.jpg">
 <meta property="fb:page_id" content="61582247163950">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://adolfou10.github.io/pagina2/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "TECNODOLPHY",
+  "description": "Soporte técnico de computadoras en Cochabamba: formateo, limpieza, cambio de pasta térmica y puesta a punto de equipos gamer.",
+  "url": "https://adolfou10.github.io/pagina2/",
+  "image": "https://adolfou10.github.io/pagina2/og-image.jpg",
+  "telephone": "+59169470880",
+  "priceRange": "Bs 40 - Bs 190",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cochabamba",
+    "addressRegion": "Cochabamba",
+    "addressCountry": "BO"
+  },
+  "areaServed": { "@type": "City", "name": "Cochabamba" },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "18:00" }
+  ],
+  "sameAs": ["https://www.facebook.com/profile.php?id=61582247163950"]
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235865f2'/%3E%3Ctext x='32' y='47' font-family='Arial Black,Arial' font-weight='900' font-size='38' text-anchor='middle' fill='%23fff'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://www.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <style>
 :root{
   --blurple:#5865f2;--dark-blurple:#3442d9;--hover-blurple:#8891f2;
@@ -60,7 +82,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .actions{display:flex;align-items:center;gap:12px}
 .menu-btn{display:none;width:44px;height:44px;border-radius:var(--r-btn);border:1px solid var(--snow);background:transparent;color:var(--snow);cursor:pointer;place-items:center}
 .user-menu{position:relative}
-.user-avatar{position:relative;width:44px;height:44px;border-radius:50%;background:var(--blurple);color:var(--snow);display:grid;place-items:center;font-weight:600;cursor:pointer}
+.user-avatar{position:relative;width:44px;height:44px;border-radius:50%;background:var(--charcoal);border:1px solid var(--dim);color:var(--snow);display:grid;place-items:center;font-weight:600;cursor:pointer}
 .dropdown{display:none;position:absolute;right:0;top:56px;min-width:210px;padding:8px;background:var(--nqb);border:1px solid var(--dim);border-radius:var(--r-card)}
 .dropdown.active{display:block}
 .dropdown a,.dropdown button{display:block;width:100%;padding:12px;border:0;background:none;border-radius:var(--r-btn);text-align:left;font:500 16px var(--body);color:var(--snow);text-decoration:none;cursor:pointer}
@@ -79,8 +101,8 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .stage{position:relative;min-height:440px}
 .mock{position:absolute;inset:20px 0 20px 24px;background:var(--nqb);border-radius:var(--r-panel);overflow:hidden;display:grid;grid-template-columns:64px 1fr;border:1px solid rgba(255,255,255,.08)}
 .mock-side{background:#1a1d1f;padding:16px 0;display:flex;flex-direction:column;align-items:center;gap:12px}
-.mock-side i{width:40px;height:40px;border-radius:50%;background:var(--charcoal);display:grid;place-items:center;color:var(--fog);font-size:16px}
-.mock-side i.on{background:var(--blurple);color:var(--snow);border-radius:14px}
+.mock-side span{width:40px;height:40px;border-radius:50%;background:var(--charcoal);display:grid;place-items:center;color:var(--fog)}
+.mock-side span.on{background:var(--blurple);color:var(--snow);border-radius:14px}
 .mock-main{background:var(--charcoal);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .mock-head{display:flex;align-items:center;gap:10px;color:var(--snow);font-weight:600;padding-bottom:12px;border-bottom:1px solid var(--dim)}
 .mock-head .dot{width:10px;height:10px;border-radius:50%;background:var(--green)}
@@ -99,7 +121,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
 .feat{padding:32px;border-radius:var(--r-card);background:var(--nqb)}
 .feat .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--charcoal);color:var(--snow)}
-.feat h3{margin:20px 0 8px;font:700 19px/1.3 var(--body);color:var(--snow)}
+.feat h2{margin:20px 0 8px;font:700 19px/1.3 var(--body);color:var(--snow)}
 .feat p{color:var(--fog)}
 /* pricing */
 .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
@@ -123,8 +145,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 /* process */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px}
 .step{padding:32px;border-radius:var(--r-card);background:var(--nqb)}
-.num{width:48px;height:48px;border-radius:50%;background:var(--charcoal);color:var(--snow);display:grid;place-items:center;font:800 18px var(--display)}
-.step:nth-child(1) .num{background:var(--blurple)}.step:nth-child(2) .num{background:var(--cerulean);color:var(--nqb)}.step:nth-child(3) .num{background:var(--orange);color:var(--nqb)}.step:nth-child(4) .num{background:var(--green);color:var(--nqb)}
+.num{width:48px;height:48px;border-radius:50%;background:var(--charcoal);color:var(--snow);display:grid;place-items:center;font:800 18px var(--display);border:1px solid var(--dim)}
 .step h3{margin:24px 0 8px;font:700 20px/1.3 var(--body);color:var(--snow)}
 /* about */
 .about-card{padding:clamp(28px,5vw,56px);border-radius:var(--r-panel);background:linear-gradient(135deg,#064d29,#0a7340);color:#fff}
@@ -148,7 +169,7 @@ figcaption{margin-top:16px;font-weight:600;color:var(--snow)}figcaption span{dis
 .reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:40px}
 .review{padding:28px;border-radius:var(--r-card);background:var(--nqb)}
 .who{display:flex;gap:12px;align-items:center;margin-bottom:16px}
-.av{width:44px;height:44px;border-radius:50%;background:var(--blurple);color:var(--snow);display:grid;place-items:center;font-weight:600;flex:none}
+.av{width:44px;height:44px;border-radius:50%;background:var(--charcoal);border:1px solid var(--dim);color:var(--snow);display:grid;place-items:center;font-weight:600;flex:none}
 .who b{display:block;color:var(--snow)}.stars{color:var(--orange);letter-spacing:2px;font-size:14px}
 .review small{display:block;margin-top:16px;color:var(--greyple);font-size:14px}
 /* faq */
@@ -162,7 +183,7 @@ details p{padding:0 40px 24px 0}
 .cta h2{font-size:clamp(2.6rem,7vw,5rem);line-height:.92}
 .cta p{margin-top:24px;max-width:32rem;font-size:20px;line-height:1.38;color:#fff}
 .cta .ulink{color:#fff}
-.foot{padding:64px 0 40px;background:var(--nqb)}
+.foot{padding:64px 0 96px;background:var(--nqb)}
 .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px}
 .foot h3{font:500 16px var(--body);letter-spacing:.013em;color:var(--snow);margin-bottom:14px}
 .foot a{display:block;margin-bottom:10px;text-decoration:none;color:var(--fog)}.foot a:hover{color:var(--snow);text-decoration:underline}
@@ -170,17 +191,34 @@ details p{padding:0 40px 24px 0}
 .copy{margin-top:48px;color:var(--greyple);font-size:14px}
 .wa{position:fixed;right:20px;bottom:20px;z-index:40;display:inline-flex;gap:10px;align-items:center;padding:14px 22px;border-radius:var(--r-btn-lg);background:var(--blurple);color:var(--snow);font-weight:500;text-decoration:none}
 .wa:hover{background:var(--dark-blurple)}
+.wa{bottom:calc(20px + env(safe-area-inset-bottom,0px));transition:opacity .2s,transform .2s,visibility .2s,background-color .15s}
+.wa.hide{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px)}
 /* atención al cliente */
 .care{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center;padding:clamp(24px,4vw,48px);border-radius:var(--r-panel);background:var(--nqb)}
 .care-art{padding:24px;border-radius:var(--r-card);background:var(--charcoal);overflow:hidden}
 .care-art img{width:100%;height:auto}
 .care-pts{margin:28px 0 32px;display:grid;gap:16px}
 .care-pts li{display:flex;gap:14px;align-items:flex-start}
-.care-pts .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;color:var(--nqb);font-size:16px}
-.care-pts li:nth-child(1) .ic{background:var(--green)}.care-pts li:nth-child(2) .ic{background:var(--cerulean)}.care-pts li:nth-child(3) .ic{background:var(--orange)}.care-pts li:nth-child(4) .ic{background:var(--hover-blurple)}
+.care-pts .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--charcoal);color:var(--snow)}
 .care-pts b{display:block;color:var(--snow);font-weight:600}.care-pts span{font-size:15px}
 @media(max-width:1000px){.care{grid-template-columns:1fr}}
 .about.no-photo{grid-template-columns:1fr}.about.no-photo .photo{display:none}
+.icon.fill{fill:currentColor;stroke:none}
+.btn .icon{width:20px;height:20px}
+.mock-side .icon{width:20px;height:20px}
+.msg .pic .icon{width:18px;height:18px}
+.prop .icon{width:50%;height:50%}
+.pill .icon{width:16px;height:16px}
+.care-pts .ic .icon{width:20px;height:20px}
+.brand .logo .icon{width:20px;height:20px}
+.vbadge{position:absolute;bottom:-3px;right:-3px;width:18px;height:18px;border-radius:50%;background:var(--nqb);color:var(--green);display:grid;place-items:center}
+.vbadge .icon{width:16px;height:16px}
+.btn-lg{padding:19.5px 28px}
+.reviews{min-height:200px}
+.sk{background:var(--charcoal);border-radius:8px;animation:pulse 1.4s ease-in-out infinite}
+.av.sk{border:0}
+@keyframes pulse{50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.sk{animation:none}}
 /* modals */
 .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:16px}
 .modal.active{display:flex}
@@ -229,10 +267,21 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <symbol id="wr" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></symbol>
 <symbol id="gp" viewBox="0 0 24 24"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6C2.6 9.4 2 14.5 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.4-1.4a2 2 0 0 1 1.4-.6h4.4a2 2 0 0 1 1.4.6L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.5-.6-6.6-.7-7.3A4 4 0 0 0 17.3 5z"/></symbol>
 <symbol id="mn" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-whatsapp" viewBox="0 0 448 512"><path fill="currentColor" stroke="none" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></symbol>
+<symbol id="i-google" viewBox="0 0 488 512"><path fill="currentColor" stroke="none" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></symbol>
+<symbol id="i-microchip" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+<symbol id="i-desktop" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="i-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1-4 0-7 3-7s3 4 0 6.5M14 12c4-1 7 0 7 3s-4 3-6.5 0M12 14c1 4 0 7-3 7s-3-4 0-6.5M10 12c-4 1-7 0-7-3s4-3 6.5 0"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="M12 2v20"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+<symbol id="i-thermo" viewBox="0 0 24 24"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M3 14h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2zM21 14h-3a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 0 2-2z"/></symbol>
+<symbol id="i-circlecheck" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
 </defs></svg>
 
 <header class="top" id="navbar"><div class="wrap">
-<a class="brand" href="#inicio"><span class="logo"><i class="fas fa-microchip"></i></span>TECNODOLPHY</a>
+<a class="brand" href="#inicio"><span class="logo"><svg class="icon" aria-hidden="true"><use href="#i-microchip"/></svg></span>TECNODOLPHY</a>
 <nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a></nav>
 <div class="actions">
 <div id="authButtons"><button class="btn btn-login" onclick="openLoginModal()">Iniciar sesión</button></div>
@@ -246,24 +295,24 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <div>
 <h1 class="display"><span>Tu PC</span><span>rinde</span><span>otra vez.</span></h1>
 <p class="lead">Soporte técnico en Cochabamba para PCs y laptops: mantenimiento de software y hardware, y puesta a punto para equipos gamer. Desde 40 Bs.</p>
-<div class="cta-row"><a class="btn btn-white" href="#servicios">Ver precios</a><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar por WhatsApp</a></div>
+<div class="cta-row"><a class="btn btn-white" href="#servicios">Ver precios</a><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar por WhatsApp</a></div>
 </div>
 <div class="stage" aria-hidden="true">
 <div class="mock">
-<div class="mock-side"><i class="on fas fa-desktop"></i><i class="fas fa-fan"></i><i class="fas fa-shield-halved"></i><i class="fas fa-gamepad"></i></div>
+<div class="mock-side"><span class="on"><svg class="icon" aria-hidden="true"><use href="#i-desktop"/></svg></span><span><svg class="icon" aria-hidden="true"><use href="#i-fan"/></svg></span><span><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span><svg class="icon" aria-hidden="true"><use href="#gp"/></svg></span></div>
 <div class="mock-main">
 <div class="mock-head"><span class="dot"></span># tu-equipo · en servicio</div>
-<div class="msg"><span class="pic" style="background:var(--blurple)"><i class="fas fa-wrench"></i></span><div><b>Técnico<small>Hoy 10:02</small></b><p>Diagnóstico listo. Cambiamos la pasta térmica y limpiamos el polvo interno.</p><span class="pill"><i class="fas fa-temperature-low"></i> Pasta térmica renovada</span></div></div>
-<div class="msg"><span class="pic" style="background:#6d2480"><i class="fas fa-bolt"></i></span><div><b>Windows<small>Hoy 10:40</small></b><p>Instalación, drivers y optimización completados.</p><div class="bar"><i></i></div></div></div>
-<div class="msg"><span class="pic" style="background:#0a7340"><i class="fas fa-check"></i></span><div><b>Entrega<small>Hoy 11:30</small></b><p>Tu equipo está listo para retirar. ¡Pagas al verificar que todo funciona!</p></div></div>
+<div class="msg"><span class="pic" style="background:var(--blurple)"><svg class="icon" aria-hidden="true"><use href="#wr"/></svg></span><div><b>Técnico<small>Hoy 10:02</small></b><p>Diagnóstico listo. Cambiamos la pasta térmica y limpiamos el polvo interno.</p><span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-thermo"/></svg> Pasta térmica renovada</span></div></div>
+<div class="msg"><span class="pic" style="background:#6d2480"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span><div><b>Windows<small>Hoy 10:40</small></b><p>Instalación, drivers y optimización completados.</p><div class="bar"><i></i></div></div></div>
+<div class="msg"><span class="pic" style="background:#0a7340"><svg class="icon" aria-hidden="true"><use href="#ck"/></svg></span><div><b>Entrega<small>Hoy 11:30</small></b><p>Tu equipo está listo para retirar. ¡Pagas al verificar que todo funciona!</p></div></div>
 </div></div>
-<span class="prop a"><i class="fas fa-gamepad"></i></span><span class="prop b"><i class="fas fa-microchip"></i></span><span class="prop c"><i class="fas fa-bolt"></i></span>
+<span class="prop a"><svg class="icon" aria-hidden="true"><use href="#gp"/></svg></span><span class="prop b"><svg class="icon" aria-hidden="true"><use href="#i-microchip"/></svg></span><span class="prop c"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span>
 </div>
 </div>
 <div class="wrap" style="margin-top:56px"><div class="feats">
-<div class="feat"><div class="ic"><svg class="icon"><use href="#aw"/></svg></div><h3>Técnico certificado</h3><p>Certificación IT Essentials de Cisco Networking Academy.</p></div>
-<div class="feat"><div class="ic"><svg class="icon"><use href="#bn"/></svg></div><h3>Precios claros</h3><p>Cada servicio tiene precio fijo. Si hace falta algo más, te avisamos antes.</p></div>
-<div class="feat"><div class="ic"><svg class="icon"><use href="#ch"/></svg></div><h3>Asesoría después del servicio</h3><p>Escríbenos por WhatsApp y te ayudamos sin costo adicional.</p></div>
+<div class="feat"><div class="ic"><svg class="icon"><use href="#aw"/></svg></div><h2>Técnico certificado</h2><p>Certificación IT Essentials de Cisco Networking Academy.</p></div>
+<div class="feat"><div class="ic"><svg class="icon"><use href="#bn"/></svg></div><h2>Precios claros</h2><p>Cada servicio tiene precio fijo. Si hace falta algo más, te avisamos antes.</p></div>
+<div class="feat"><div class="ic"><svg class="icon"><use href="#ch"/></svg></div><h2>Asesoría después del servicio</h2><p>Escríbenos por WhatsApp y te ayudamos sin costo adicional.</p></div>
 </div></div></section>
 
 <section class="band" id="servicios"><div class="wrap">
@@ -271,15 +320,15 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <div class="tabs" role="tablist"><button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1">Equipo estándar</button><button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2">Equipo gamer</button></div></div>
 
 <div id="p1" role="tabpanel" aria-labelledby="t1"><p class="hint">Para PCs y laptops de uso diario y equipos más antiguos.</p><div class="plans">
-<article class="plan"><div><h3>Software Estándar</h3><p class="d">Formateo, drivers y limpieza de virus.</p></div><p class="price"><b>40</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Formateo e instalación de Windows</li><li><svg class="icon"><use href="#ck"/></svg>Drivers básicos</li><li><svg class="icon"><use href="#ck"/></svg>Eliminación de virus</li><li><svg class="icon"><use href="#ck"/></svg>Optimización básica</li><li><svg class="icon"><use href="#ck"/></svg>Actualización del sistema</li><li><svg class="icon"><use href="#ck"/></svg>Respaldo de datos</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Software%20Est%C3%A1ndar%20%2840bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
-<article class="plan c1"><div><h3>Hardware Estándar</h3><p class="d">Limpieza interna y cambio de pasta térmica.</p></div><p class="price"><b>80</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Limpieza interna estándar</li><li><svg class="icon"><use href="#ck"/></svg>Cambio de pasta térmica</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico de componentes</li><li><svg class="icon"><use href="#ck"/></svg>Revisión de ventiladores</li><li><svg class="icon"><use href="#ck"/></svg>Organización de cables</li><li><svg class="icon"><use href="#ck"/></svg>Reporte de estado</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Est%C3%A1ndar%20%2880bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
-<article class="plan purple"><div><h3>Combo Estándar</h3><p class="d">Software y hardware en un solo servicio.</p></div><p class="price"><b>100</b><i>Bs</i><span class="tag">Ahorras 20 Bs</span></p><ul><li><svg class="icon"><use href="#ck"/></svg>Software estándar completo</li><li><svg class="icon"><use href="#ck"/></svg>Hardware estándar completo</li><li><svg class="icon"><use href="#ck"/></svg>Instalación de Office</li><li><svg class="icon"><use href="#ck"/></svg>Configuración básica</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico completo</li><li><svg class="icon"><use href="#ck"/></svg>Soporte por WhatsApp</li></ul><a class="btn btn-white" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Combo%20Est%C3%A1ndar%20%28100bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
+<article class="plan"><div><h3>Software Estándar</h3><p class="d">Formateo, drivers y limpieza de virus.</p></div><p class="price"><b>40</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Formateo e instalación de Windows</li><li><svg class="icon"><use href="#ck"/></svg>Drivers básicos</li><li><svg class="icon"><use href="#ck"/></svg>Eliminación de virus</li><li><svg class="icon"><use href="#ck"/></svg>Optimización básica</li><li><svg class="icon"><use href="#ck"/></svg>Actualización del sistema</li><li><svg class="icon"><use href="#ck"/></svg>Respaldo de datos</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Software%20Est%C3%A1ndar%20%2840bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
+<article class="plan c1"><div><h3>Hardware Estándar</h3><p class="d">Limpieza interna y cambio de pasta térmica.</p></div><p class="price"><b>80</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Limpieza interna estándar</li><li><svg class="icon"><use href="#ck"/></svg>Cambio de pasta térmica</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico de componentes</li><li><svg class="icon"><use href="#ck"/></svg>Revisión de ventiladores</li><li><svg class="icon"><use href="#ck"/></svg>Organización de cables</li><li><svg class="icon"><use href="#ck"/></svg>Reporte de estado</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Est%C3%A1ndar%20%2880bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
+<article class="plan purple"><div><h3>Combo Estándar</h3><p class="d">Software y hardware en un solo servicio.</p></div><p class="price"><b>100</b><i>Bs</i><span class="tag">Ahorras 20 Bs</span></p><ul><li><svg class="icon"><use href="#ck"/></svg>Software estándar completo</li><li><svg class="icon"><use href="#ck"/></svg>Hardware estándar completo</li><li><svg class="icon"><use href="#ck"/></svg>Instalación de Office</li><li><svg class="icon"><use href="#ck"/></svg>Configuración básica</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico completo</li><li><svg class="icon"><use href="#ck"/></svg>Soporte por WhatsApp</li></ul><a class="btn btn-white" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Combo%20Est%C3%A1ndar%20%28100bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
 </div></div>
 
 <div id="p2" role="tabpanel" aria-labelledby="t2" hidden><p class="hint">Para PCs y laptops gamer o de alto rendimiento.</p><div class="plans">
-<article class="plan"><div><h3>Software Gamer</h3><p class="d">Windows y drivers listos para jugar.</p></div><p class="price"><b>50</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Formateo e instalación de Windows</li><li><svg class="icon"><use href="#ck"/></svg>Drivers optimizados para gaming</li><li><svg class="icon"><use href="#ck"/></svg>Eliminación de bloatware</li><li><svg class="icon"><use href="#ck"/></svg>Optimización de FPS</li><li><svg class="icon"><use href="#ck"/></svg>Configuración de GPU y CPU</li><li><svg class="icon"><use href="#ck"/></svg>Instalación de software gaming</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Software%20Gamer%20%2850bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
-<article class="plan c1"><div><h3>Hardware Gamer</h3><p class="d">Limpieza profunda y mejor refrigeración.</p></div><p class="price"><b>160</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Limpieza profunda avanzada</li><li><svg class="icon"><use href="#ck"/></svg>Pasta térmica de calidad</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico completo de componentes</li><li><svg class="icon"><use href="#ck"/></svg>Optimización de refrigeración</li><li><svg class="icon"><use href="#ck"/></svg>Test de temperaturas bajo carga</li><li><svg class="icon"><use href="#ck"/></svg>Orden profesional de cables</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Gamer%20%28160bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
-<article class="plan green"><div><h3>Combo Gamer</h3><p class="d">Rendimiento máximo en un solo servicio.</p></div><p class="price"><b>190</b><i>Bs</i><span class="tag">Ahorras 20 Bs</span></p><ul><li><svg class="icon"><use href="#ck"/></svg>Software gamer completo</li><li><svg class="icon"><use href="#ck"/></svg>Hardware gamer completo</li><li><svg class="icon"><use href="#ck"/></svg>Overclocking seguro (opcional)</li><li><svg class="icon"><use href="#ck"/></svg>Benchmark de rendimiento</li><li><svg class="icon"><use href="#ck"/></svg>Reporte técnico detallado</li><li><svg class="icon"><use href="#ck"/></svg>Soporte prioritario por WhatsApp</li></ul><a class="btn btn-white" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Combo%20Gamer%20%28190bs%29" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Agendar este servicio</a></article>
+<article class="plan"><div><h3>Software Gamer</h3><p class="d">Windows y drivers listos para jugar.</p></div><p class="price"><b>50</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Formateo e instalación de Windows</li><li><svg class="icon"><use href="#ck"/></svg>Drivers optimizados para gaming</li><li><svg class="icon"><use href="#ck"/></svg>Eliminación de bloatware</li><li><svg class="icon"><use href="#ck"/></svg>Optimización de FPS</li><li><svg class="icon"><use href="#ck"/></svg>Configuración de GPU y CPU</li><li><svg class="icon"><use href="#ck"/></svg>Instalación de software gaming</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Software%20Gamer%20%2850bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
+<article class="plan c1"><div><h3>Hardware Gamer</h3><p class="d">Limpieza profunda y mejor refrigeración.</p></div><p class="price"><b>160</b><i>Bs</i></p><ul><li><svg class="icon"><use href="#ck"/></svg>Limpieza profunda avanzada</li><li><svg class="icon"><use href="#ck"/></svg>Pasta térmica de calidad</li><li><svg class="icon"><use href="#ck"/></svg>Diagnóstico completo de componentes</li><li><svg class="icon"><use href="#ck"/></svg>Optimización de refrigeración</li><li><svg class="icon"><use href="#ck"/></svg>Test de temperaturas bajo carga</li><li><svg class="icon"><use href="#ck"/></svg>Orden profesional de cables</li></ul><a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Gamer%20%28160bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
+<article class="plan green"><div><h3>Combo Gamer</h3><p class="d">Rendimiento máximo en un solo servicio.</p></div><p class="price"><b>190</b><i>Bs</i><span class="tag">Ahorras 20 Bs</span></p><ul><li><svg class="icon"><use href="#ck"/></svg>Software gamer completo</li><li><svg class="icon"><use href="#ck"/></svg>Hardware gamer completo</li><li><svg class="icon"><use href="#ck"/></svg>Overclocking seguro (opcional)</li><li><svg class="icon"><use href="#ck"/></svg>Benchmark de rendimiento</li><li><svg class="icon"><use href="#ck"/></svg>Reporte técnico detallado</li><li><svg class="icon"><use href="#ck"/></svg>Soporte prioritario por WhatsApp</li></ul><a class="btn btn-white" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita%20para%20Combo%20Gamer%20%28190bs%29" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar este servicio</a></article>
 </div></div>
 </div></section>
 
@@ -290,12 +339,12 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <h2 class="h2">Atención al cliente</h2>
 <p class="sub">Hablas directo con el técnico que revisa tu equipo, antes, durante y después del servicio.</p>
 <ul class="care-pts">
-<li><span class="ic"><i class="fas fa-bolt"></i></span><div><b>Respuesta en menos de 24 h</b><span>Escríbenos por WhatsApp y te contestamos rápido.</span></div></li>
-<li><span class="ic"><i class="fas fa-headset"></i></span><div><b>Trato directo con el técnico</b><span>Sin intermediarios: te explicamos qué tiene tu equipo.</span></div></li>
-<li><span class="ic"><i class="fas fa-circle-check"></i></span><div><b>Asesoría sin costo después</b><span>Si algo falla tras el servicio, consúltanos.</span></div></li>
-<li><span class="ic"><i class="fas fa-clock"></i></span><div><b>Lun a Sáb 9:00 a 20:00 · Dom 10:00 a 18:00</b><span>Agenda tu cita en el horario que mejor te quede.</span></div></li>
+<li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span><div><b>Respuesta en menos de 24 h</b><span>Escríbenos por WhatsApp y te contestamos rápido.</span></div></li>
+<li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg></span><div><b>Trato directo con el técnico</b><span>Sin intermediarios: te explicamos qué tiene tu equipo.</span></div></li>
+<li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-circlecheck"/></svg></span><div><b>Asesoría sin costo después</b><span>Si algo falla tras el servicio, consúltanos.</span></div></li>
+<li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><div><b>Lun a Sáb 9:00 a 20:00 · Dom 10:00 a 18:00</b><span>Agenda tu cita en el horario que mejor te quede.</span></div></li>
 </ul>
-<a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Hablar con el técnico</a>
+<a class="btn btn-primary" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Hablar con el técnico</a>
 </div>
 </div></div></section>
 
@@ -333,7 +382,7 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <section class="band" id="resenas" style="padding-top:0"><div class="wrap">
 <div class="head-row"><div><h2 class="h2">Lo que dicen nuestros clientes</h2><p class="sub" id="reviewsCount">Cargando reseñas…</p></div>
 <button class="btn btn-primary" onclick="checkLoginAndReview()">Dejar mi reseña</button></div>
-<div class="reviews" id="reviewsContainer"></div>
+<div class="reviews" id="reviewsContainer" aria-live="polite"><article class="review skel" aria-hidden="true"><div class="who"><span class="av sk"></span><div style="flex:1"><div class="sk" style="height:14px;width:55%"></div></div></div><div class="sk" style="height:12px;margin-bottom:10px"></div><div class="sk" style="height:12px;width:80%"></div></article><article class="review skel" aria-hidden="true"><div class="who"><span class="av sk"></span><div style="flex:1"><div class="sk" style="height:14px;width:55%"></div></div></div><div class="sk" style="height:12px;margin-bottom:10px"></div><div class="sk" style="height:12px;width:80%"></div></article><article class="review skel" aria-hidden="true"><div class="who"><span class="av sk"></span><div style="flex:1"><div class="sk" style="height:14px;width:55%"></div></div></div><div class="sk" style="height:12px;margin-bottom:10px"></div><div class="sk" style="height:12px;width:80%"></div></article></div>
 </div></section>
 
 <section class="band" id="faq" style="padding-top:0"><div class="wrap faq-l">
@@ -348,23 +397,23 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 
 <section class="band" style="padding-top:0"><div class="wrap"><div class="cta">
 <h2 class="display">Agenda tu cita</h2><p>Cuéntanos qué le pasa a tu equipo por WhatsApp y coordinamos día y hora.</p>
-<div class="cta-row"><a class="btn btn-white btn-lg" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a><a class="ulink" href="tel:+59169470880">Llamar al +591 69470880</a></div>
+<div class="cta-row"><a class="btn btn-white btn-lg" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Escribir por WhatsApp</a><a class="ulink" href="tel:+59169470880">Llamar al +591 69470880</a></div>
 </div></div></section>
 </main>
 
 <footer class="foot"><div class="wrap">
 <div class="fg">
-<div><a class="brand" href="#inicio"><span class="logo"><i class="fas fa-microchip"></i></span>TECNODOLPHY</a><p style="max-width:20rem">Soporte técnico para PCs y laptops en Cochabamba, Bolivia.</p></div>
+<div><a class="brand" href="#inicio"><span class="logo"><svg class="icon" aria-hidden="true"><use href="#i-microchip"/></svg></span>TECNODOLPHY</a><p style="max-width:20rem">Soporte técnico para PCs y laptops en Cochabamba, Bolivia.</p></div>
 <div><h3>Servicios</h3><a href="#servicios">Equipo estándar</a><a href="#servicios">Equipo gamer</a><a href="#proceso">Cómo trabajamos</a></div>
 <div><h3>Sitio</h3><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a></div>
 <div><h3>Contacto</h3><a href="https://wa.me/59169470880" target="_blank" rel="noopener">WhatsApp +591 69470880</a><a href="https://www.facebook.com/profile.php?id=61582247163950" target="_blank" rel="noopener">Facebook</a><p>Lun a Sáb: 9:00 a 20:00<br>Dom: 10:00 a 18:00</p></div>
 </div><p class="copy">© 2026 TECNODOLPHY. Todos los derechos reservados.</p></div></footer>
-<a class="wa" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
+<a class="wa" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> <span>WhatsApp</span></a>
 
 <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="lt"><div class="modal-content">
 <button class="modal-close" onclick="closeModal('loginModal')" aria-label="Cerrar">&times;</button>
 <h2 id="lt">Iniciar sesión</h2><p>Ingresa para dejar tu reseña.</p><div id="loginAlert"></div>
-<button class="btn btn-white btn-block" onclick="signInWithGoogle()"><i class="fab fa-google"></i> Continuar con Google</button><p class="or">o con tu email</p>
+<button class="btn btn-white btn-block" onclick="signInWithGoogle()"><svg class="icon fill" aria-hidden="true"><use href="#i-google"/></svg> Continuar con Google</button><p class="or">o con tu email</p>
 <form onsubmit="login(event)"><div class="fgp"><label for="loginEmail">Email</label><input type="email" id="loginEmail" required autocomplete="email"></div>
 <div class="fgp"><label for="loginPassword">Contraseña</label><input type="password" id="loginPassword" required autocomplete="current-password"></div>
 <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button></form>
@@ -374,7 +423,7 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <div class="modal" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="rt"><div class="modal-content">
 <button class="modal-close" onclick="closeModal('registerModal')" aria-label="Cerrar">&times;</button>
 <h2 id="rt">Crear cuenta</h2><p>Te enviaremos un correo para verificar tu email.</p><div id="registerAlert"></div>
-<button class="btn btn-white btn-block" onclick="signInWithGoogle()"><i class="fab fa-google"></i> Continuar con Google</button><p class="or">o crea tu cuenta con email</p>
+<button class="btn btn-white btn-block" onclick="signInWithGoogle()"><svg class="icon fill" aria-hidden="true"><use href="#i-google"/></svg> Continuar con Google</button><p class="or">o crea tu cuenta con email</p>
 <form onsubmit="register(event)"><div class="fgp"><label for="registerName">Nombre completo</label><input type="text" id="registerName" required autocomplete="name"></div>
 <div class="fgp"><label for="registerEmail">Email</label><input type="email" id="registerEmail" required autocomplete="email"></div>
 <div class="fgp"><label for="registerPassword">Contraseña</label><input type="password" id="registerPassword" required minlength="6" oninput="checkPasswordStrength()" autocomplete="new-password"><small id="passwordStrength"></small></div>
@@ -395,6 +444,9 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <h3 style="font:600 16px var(--body);margin-bottom:12px;color:var(--snow)">Mis reseñas</h3><div id="userReviewsList"></div>
 <button class="btn btn-ghost btn-block mt" onclick="closeModal('profileModal')">Cerrar</button></div></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script>
 // ============ FIREBASE ============
 const firebaseConfig = {
@@ -438,6 +490,11 @@ document.addEventListener('keydown',function(e){
   if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
   else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
 });
+(function(){var wa=document.querySelector('.wa');if(!wa||!('IntersectionObserver' in window))return;
+  var vis=new Set();
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)vis.add(e.target);else vis.delete(e.target)});wa.classList.toggle('hide',vis.size>0)},{threshold:.1});
+  document.querySelectorAll('.hero .cta-row,#servicios,#atencion,.cta').forEach(function(el){io.observe(el)});
+})();
 document.getElementById('userAvatar').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUserDropdown()}});
 document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('active')})});
 
@@ -521,7 +578,7 @@ function updateUIForUser(){
     ab.style.display='none';um.style.display='block';
     var n=(currentUser.displayName||'U').charAt(0).toUpperCase();
     av.textContent=n;
-    if(currentUser.emailVerified){var b=document.createElement('i');b.className='fas fa-check-circle';b.style.cssText='position:absolute;bottom:-3px;right:-3px;font-size:.85rem;background:#23272a;border-radius:50%;color:#57f287';av.appendChild(b)}
+    if(currentUser.emailVerified){var b=document.createElement('span');b.className='vbadge';b.innerHTML='<svg class="icon" aria-hidden="true"><use href="#i-circlecheck"/></svg>';av.appendChild(b)}
   }else{ab.style.display='flex';um.style.display='none'}
 }
 
@@ -564,7 +621,7 @@ function loadReviews(){
     var c=document.getElementById('reviewsContainer');
     document.getElementById('reviewsCount').textContent=s.empty?'Todavía no hay reseñas. Sé el primero en contarnos cómo te fue.':s.size+(s.size===1?' reseña de clientes':' reseñas de clientes');
     c.innerHTML=s.docs.map(function(d){var r=d.data();return '<article class="review"><div class="who"><span class="av">'+esc((r.userName||'C').charAt(0).toUpperCase())+'</span><div><b>'+esc(r.userName||'Cliente')+'</b><span class="stars" aria-label="'+(parseInt(r.rating,10)||1)+' de 5 estrellas">'+stars(r.rating)+'</span></div></div><p>'+esc(r.text)+'</p><small>'+esc(fdate(r.date))+'</small></article>'}).join('');
-  }).catch(function(e){console.error(e);document.getElementById('reviewsCount').textContent='No pudimos cargar las reseñas. Recarga la página.'});
+  }).catch(function(e){console.error(e);document.getElementById('reviewsContainer').innerHTML='';document.getElementById('reviewsCount').textContent='No pudimos cargar las reseñas. Recarga la página.'});
 }
 
 // ============ TABS ============
