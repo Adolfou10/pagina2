@@ -91,7 +91,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .pill{display:inline-flex;gap:6px;align-items:center;margin-top:8px;padding:6px 12px;border-radius:104px;background:rgba(87,242,135,.14);color:var(--green);font-size:13px;font-weight:500}
 .bar{height:8px;border-radius:8px;background:var(--dim);overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:92%;background:var(--green);border-radius:8px}
 .prop{position:absolute;display:grid;place-items:center;border-radius:50%;color:var(--snow);animation:bob 5s ease-in-out infinite}
-.prop.a{width:84px;height:84px;font-size:34px;background:linear-gradient(135deg,#8b31a0,#e040a0);left:-8px;top:0}
+.prop.a{width:84px;height:84px;font-size:34px;background:linear-gradient(135deg,#6d2480,#a8277f);left:-8px;top:0}
 .prop.b{width:68px;height:68px;font-size:28px;background:var(--cerulean);right:-6px;bottom:0;animation-delay:-2s}
 .prop.c{width:56px;height:56px;font-size:22px;background:var(--orange);right:30px;top:-6px;animation-delay:-3.5s;color:var(--nqb)}
 @keyframes bob{50%{transform:translateY(-12px) rotate(4deg)}}
@@ -110,8 +110,8 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .plan{display:flex;flex-direction:column;gap:24px;padding:36px;border-radius:var(--r-panel);background:var(--nqb);color:var(--fog)}
 .plan.c1{background:var(--charcoal)}
-.plan.purple{background:linear-gradient(135deg,#8b31a0,#e040a0);color:#fff}
-.plan.green{background:linear-gradient(135deg,#075e33,#119a55);color:#fff}
+.plan.purple{background:linear-gradient(135deg,#6d2480,#a8277f);color:#fff}
+.plan.green{background:linear-gradient(135deg,#064d29,#0a7340);color:#fff}
 .plan h3{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:26px;line-height:1.1;color:var(--snow)}
 .plan .d{margin-top:10px}
 .price{display:flex;align-items:center;gap:8px;color:var(--snow)}
@@ -127,7 +127,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .step:nth-child(1) .num{background:var(--blurple)}.step:nth-child(2) .num{background:var(--cerulean);color:var(--nqb)}.step:nth-child(3) .num{background:var(--orange);color:var(--nqb)}.step:nth-child(4) .num{background:var(--green);color:var(--nqb)}
 .step h3{margin:24px 0 8px;font:700 20px/1.3 var(--body);color:var(--snow)}
 /* about */
-.about-card{padding:clamp(28px,5vw,56px);border-radius:var(--r-panel);background:linear-gradient(135deg,#075e33,#119a55);color:#fff}
+.about-card{padding:clamp(28px,5vw,56px);border-radius:var(--r-panel);background:linear-gradient(135deg,#064d29,#0a7340);color:#fff}
 .about{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,72px);align-items:center}
 .photo{aspect-ratio:4/5;border-radius:var(--r-panel);overflow:hidden;background:rgba(0,0,0,.25)}
 .photo img{width:100%;height:100%;object-fit:cover;object-position:70% 75%}
@@ -158,7 +158,7 @@ summary{display:flex;justify-content:space-between;align-items:center;gap:16px;p
 summary::-webkit-details-marker{display:none}summary .icon{transition:transform .2s}details[open] summary .icon{transform:rotate(180deg)}
 details p{padding:0 40px 24px 0}
 /* cta + footer */
-.cta{padding:clamp(32px,6vw,80px);border-radius:var(--r-panel);background:linear-gradient(135deg,#8b31a0,#e040a0);color:#fff;position:relative;overflow:hidden}
+.cta{padding:clamp(32px,6vw,80px);border-radius:var(--r-panel);background:linear-gradient(135deg,#6d2480,#a8277f);color:#fff;position:relative;overflow:hidden}
 .cta h2{font-size:clamp(2.6rem,7vw,5rem);line-height:.92}
 .cta p{margin-top:24px;max-width:32rem;font-size:20px;line-height:1.38;color:#fff}
 .cta .ulink{color:#fff}
@@ -180,6 +180,7 @@ details p{padding:0 40px 24px 0}
 .care-pts li:nth-child(1) .ic{background:var(--green)}.care-pts li:nth-child(2) .ic{background:var(--cerulean)}.care-pts li:nth-child(3) .ic{background:var(--orange)}.care-pts li:nth-child(4) .ic{background:var(--hover-blurple)}
 .care-pts b{display:block;color:var(--snow);font-weight:600}.care-pts span{font-size:15px}
 @media(max-width:1000px){.care{grid-template-columns:1fr}}
+.about.no-photo{grid-template-columns:1fr}.about.no-photo .photo{display:none}
 /* modals */
 .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);align-items:center;justify-content:center;padding:16px}
 .modal.active{display:flex}
@@ -213,6 +214,10 @@ details p{padding:0 40px 24px 0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero h1 span{animation:none;opacity:1;transform:none}.prop{animation:none}*{transition:none!important}}
 </style>
+<script>
+function noPhoto(){var a=document.querySelector('.about');if(a)a.classList.add('no-photo')}
+function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.querySelector('#trabajo figure')){var s=document.getElementById('trabajo');if(s)s.style.display='none'}}
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -231,7 +236,7 @@ details p{padding:0 40px 24px 0}
 <nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a></nav>
 <div class="actions">
 <div id="authButtons"><button class="btn btn-login" onclick="openLoginModal()">Iniciar sesión</button></div>
-<div id="userMenu" class="user-menu" style="display:none"><div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()" role="button" tabindex="0" aria-label="Menú de usuario"></div>
+<div id="userMenu" class="user-menu" style="display:none"><div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()" role="button" tabindex="0" aria-haspopup="true" aria-label="Menú de usuario"></div>
 <div class="dropdown" id="userDropdown"><a href="#" onclick="openProfileModal();return false">Mi perfil</a><a href="#" onclick="openReviewModal();return false">Dejar reseña</a><button onclick="logout()">Cerrar sesión</button></div></div>
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú"><svg class="icon"><use href="#mn"/></svg></button>
 </div></div></header>
@@ -248,9 +253,9 @@ details p{padding:0 40px 24px 0}
 <div class="mock-side"><i class="on fas fa-desktop"></i><i class="fas fa-fan"></i><i class="fas fa-shield-halved"></i><i class="fas fa-gamepad"></i></div>
 <div class="mock-main">
 <div class="mock-head"><span class="dot"></span># tu-equipo · en servicio</div>
-<div class="msg"><span class="pic" style="background:var(--blurple)"><i class="fas fa-wrench"></i></span><div><b>Técnico<small>Hoy 10:02</small></b><p>Diagnóstico listo. Cambiamos la pasta térmica y limpiamos el polvo interno.</p><span class="pill"><i class="fas fa-temperature-low"></i> −18 °C bajo carga</span></div></div>
-<div class="msg"><span class="pic" style="background:#8b31a0"><i class="fas fa-bolt"></i></span><div><b>Windows<small>Hoy 10:40</small></b><p>Instalación, drivers y optimización completados.</p><div class="bar"><i></i></div></div></div>
-<div class="msg"><span class="pic" style="background:#119a55"><i class="fas fa-check"></i></span><div><b>Entrega<small>Hoy 11:30</small></b><p>Tu equipo está listo para retirar. ¡Pagas al verificar que todo funciona!</p></div></div>
+<div class="msg"><span class="pic" style="background:var(--blurple)"><i class="fas fa-wrench"></i></span><div><b>Técnico<small>Hoy 10:02</small></b><p>Diagnóstico listo. Cambiamos la pasta térmica y limpiamos el polvo interno.</p><span class="pill"><i class="fas fa-temperature-low"></i> Pasta térmica renovada</span></div></div>
+<div class="msg"><span class="pic" style="background:#6d2480"><i class="fas fa-bolt"></i></span><div><b>Windows<small>Hoy 10:40</small></b><p>Instalación, drivers y optimización completados.</p><div class="bar"><i></i></div></div></div>
+<div class="msg"><span class="pic" style="background:#0a7340"><i class="fas fa-check"></i></span><div><b>Entrega<small>Hoy 11:30</small></b><p>Tu equipo está listo para retirar. ¡Pagas al verificar que todo funciona!</p></div></div>
 </div></div>
 <span class="prop a"><i class="fas fa-gamepad"></i></span><span class="prop b"><i class="fas fa-microchip"></i></span><span class="prop c"><i class="fas fa-bolt"></i></span>
 </div>
@@ -305,7 +310,7 @@ details p{padding:0 40px 24px 0}
 
 <section class="band" id="nosotros" style="padding-top:0"><div class="wrap">
 <div class="about-card"><div class="about">
-<div class="photo"><img id="technicianPhoto" src="foto-tecnico.png" alt="Técnico de TECNODOLPHY en su taller" onerror="this.remove()"></div>
+<div class="photo"><img id="technicianPhoto" src="foto-tecnico.png" alt="Técnico de TECNODOLPHY en su taller" onerror="noPhoto()"></div>
 <div><h2 class="h2">Un taller de confianza en Cochabamba</h2>
 <p>TECNODOLPHY es un taller de soporte técnico con más de 2 años de experiencia en mantenimiento, diagnóstico y reparación de computadoras.</p>
 <p>Nuestro técnico tiene la certificación IT Essentials de Cisco y ha trabajado en más de 24 equipos, con especial atención a los equipos gamer.</p>
@@ -320,9 +325,9 @@ details p{padding:0 40px 24px 0}
 <section class="band" id="trabajo" style="padding-top:0"><div class="wrap">
 <h2 class="h2">Nuestro trabajo</h2><p class="sub">Placas madre, equipos armados y mantenimiento térmico.</p>
 <div class="gal">
-<figure><div class="shot"><img src="placa-madre.jpg" alt="Placa madre en revisión" loading="lazy" onerror="this.parentNode.classList.add('missing')"></div><figcaption>Placa madre<span>Diagnóstico y reparación</span></figcaption></figure>
-<figure><div class="shot"><img src="pc-armada.jpg" alt="PC armada" loading="lazy" onerror="this.parentNode.classList.add('missing')"></div><figcaption>PC armada<span>Ensamblaje y configuración</span></figcaption></figure>
-<figure><div class="shot"><img src="pasta-termica.jpg" alt="Cambio de pasta térmica" loading="lazy" onerror="this.parentNode.classList.add('missing')"></div><figcaption>Pasta térmica<span>Mantenimiento térmico</span></figcaption></figure>
+<figure><div class="shot"><img src="placa-madre.jpg" alt="Placa madre en revisión" loading="lazy" onerror="hideShot(this)"></div><figcaption>Placa madre<span>Diagnóstico y reparación</span></figcaption></figure>
+<figure><div class="shot"><img src="pc-armada.jpg" alt="PC armada" loading="lazy" onerror="hideShot(this)"></div><figcaption>PC armada<span>Ensamblaje y configuración</span></figcaption></figure>
+<figure><div class="shot"><img src="pasta-termica.jpg" alt="Cambio de pasta térmica" loading="lazy" onerror="hideShot(this)"></div><figcaption>Pasta térmica<span>Mantenimiento térmico</span></figcaption></figure>
 </div></div></section>
 
 <section class="band" id="resenas" style="padding-top:0"><div class="wrap">
@@ -364,7 +369,7 @@ details p{padding:0 40px 24px 0}
 <div class="fgp"><label for="loginPassword">Contraseña</label><input type="password" id="loginPassword" required autocomplete="current-password"></div>
 <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button></form>
 <button class="btn btn-ghost btn-block mt" id="resendEmailBtn" onclick="resendVerificationEmail()" style="display:none">Reenviar email de verificación</button>
-<p class="switch">¿No tienes cuenta? <a onclick="switchToRegister()">Crear cuenta</a></p></div></div>
+<p class="switch">¿No tienes cuenta? <a href="#" onclick="switchToRegister();return false">Crear cuenta</a></p></div></div>
 
 <div class="modal" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="rt"><div class="modal-content">
 <button class="modal-close" onclick="closeModal('registerModal')" aria-label="Cerrar">&times;</button>
@@ -375,7 +380,7 @@ details p{padding:0 40px 24px 0}
 <div class="fgp"><label for="registerPassword">Contraseña</label><input type="password" id="registerPassword" required minlength="6" oninput="checkPasswordStrength()" autocomplete="new-password"><small id="passwordStrength"></small></div>
 <div class="fgp"><label for="registerPasswordConfirm">Confirmar contraseña</label><input type="password" id="registerPasswordConfirm" required minlength="6" autocomplete="new-password"></div>
 <button type="submit" class="btn btn-primary btn-block">Crear cuenta</button></form>
-<p class="switch">¿Ya tienes cuenta? <a onclick="switchToLogin()">Iniciar sesión</a></p></div></div>
+<p class="switch">¿Ya tienes cuenta? <a href="#" onclick="switchToLogin();return false">Iniciar sesión</a></p></div></div>
 
 <div class="modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="vt"><div class="modal-content">
 <button class="modal-close" onclick="closeModal('reviewModal')" aria-label="Cerrar">&times;</button>
@@ -411,8 +416,9 @@ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){retur
 function stars(n){n=Math.max(1,Math.min(5,parseInt(n,10)||1));return '★'.repeat(n)+'☆'.repeat(5-n)}
 function fdate(d){return new Date(d).toLocaleDateString('es',{year:'numeric',month:'long',day:'numeric'})}
 function showAlert(id,msg,type){var c=document.getElementById(id);c.innerHTML='<div class="alert alert-'+type+'">'+msg+'</div>';setTimeout(function(){c.innerHTML=''},5000)}
-function openModal(id){document.getElementById(id).classList.add('active')}
-function closeModal(id){document.getElementById(id).classList.remove('active')}
+var lastFocus=null;
+function openModal(id){var m=document.getElementById(id);if(!m.classList.contains('active')&&document.activeElement&&document.activeElement!==document.body)lastFocus=document.activeElement;m.classList.add('active');var f=m.querySelector('input,select,textarea');setTimeout(function(){(f||m.querySelector('.modal-close')).focus()},30)}
+function closeModal(id){var m=document.getElementById(id);var was=m.classList.contains('active');m.classList.remove('active');if(was&&!document.querySelector('.modal.active')&&lastFocus&&document.contains(lastFocus)){lastFocus.focus();lastFocus=null}}
 function openLoginModal(){closeModal('registerModal');openModal('loginModal')}
 function switchToRegister(){closeModal('loginModal');openModal('registerModal')}
 function switchToLogin(){closeModal('registerModal');openModal('loginModal')}
@@ -420,9 +426,19 @@ function openReviewModal(){closeModal('profileModal');openModal('reviewModal')}
 function toggleMenu(){document.getElementById('navLinks').classList.toggle('active')}
 function toggleUserDropdown(){document.getElementById('userDropdown').classList.toggle('active')}
 
-window.addEventListener('click',function(e){if(e.target.classList&&e.target.classList.contains('modal'))e.target.classList.remove('active')});
+window.addEventListener('click',function(e){if(e.target.classList&&e.target.classList.contains('modal'))closeModal(e.target.id)});
 document.addEventListener('click',function(e){var m=document.getElementById('userMenu');if(!m.contains(e.target))document.getElementById('userDropdown').classList.remove('active')});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.active').forEach(function(m){m.classList.remove('active')})});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){document.querySelectorAll('.modal.active').forEach(function(m){closeModal(m.id)});return}
+  if(e.key!=='Tab')return;
+  var m=document.querySelector('.modal.active');if(!m)return;
+  var f=[].slice.call(m.querySelectorAll('a[href],button,input,select,textarea')).filter(function(x){return !x.disabled&&x.offsetParent!==null});
+  if(!f.length)return;
+  var a=f[0],z=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+  else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+});
+document.getElementById('userAvatar').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUserDropdown()}});
 document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('active')})});
 
 // ============ AUTENTICACIÓN ============
