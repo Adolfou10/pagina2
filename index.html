@@ -94,7 +94,7 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .top{position:sticky;top:0;z-index:50;background:rgba(13,10,31,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background-color var(--d-ui) ease}
 .top.scrolled{background:rgba(23,18,46,.94)}
 .top .wrap{height:68px;display:flex;align-items:center;gap:16px}
-.brand{display:inline-flex;align-items:center;gap:10px;min-width:0;min-height:44px;margin-right:auto;font:700 min(1.0625rem,5.4vw)/1 var(--font);letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.brand{display:inline-flex;align-items:center;gap:10px;min-width:0;min-height:44px;margin-right:auto;font:700 min(1.0625rem,4.6vw)/1 var(--font);letter-spacing:-.01em;color:var(--ink);text-decoration:none}
 .brand .logo{width:32px;height:32px;flex:none}
 .seg{display:flex;gap:2px}
 .seg a{padding:10px 12px;border-radius:var(--radius);text-decoration:none;font-size:.9375rem;font-weight:600;color:var(--ink-2);transition:color var(--d-ui) ease}
@@ -109,7 +109,9 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .dropdown a,.dropdown button{display:block;width:100%;min-height:44px;padding:12px;border:0;background:none;border-radius:4px;text-align:left;font:600 .9375rem var(--font);color:var(--ink);text-decoration:none;cursor:pointer}
 @media(hover:hover) and (pointer:fine){.seg a:hover{color:var(--ink)}.dropdown a:hover,.dropdown button:hover{background:var(--surface-2)}}
 @media(max-width:62.5em){
-  .seg{display:none}.menu-btn{display:grid}.top-cta{display:none}
+  .seg{display:none}.top-cta{display:none}
+  /* el botón va antes del menú en el HTML para que Tab entre en los enlaces al abrirlo; queda a la izquierda de .actions con su hueco de 8px */
+  .menu-btn{display:grid;flex:none;margin-right:-8px}
   .seg.active{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;padding:8px var(--gutter) 24px;background:var(--surface-1);box-shadow:0 20px 48px -12px rgba(5,3,15,.7)}
   .seg.active a{padding:14px 4px;font-size:1.0625rem;color:var(--ink)}
   .seg.active .seg-cta{display:inline-flex;margin-top:12px;padding:0 22px;color:#fff}
@@ -362,13 +364,13 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 
 <header class="top" id="navbar"><div class="wrap">
 <a class="brand" href="#inicio" aria-label="TECNODOLPHY, inicio"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>TECNODOLPHY</a>
+<button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><svg class="icon" aria-hidden="true"><use href="#mn"/></svg></button>
 <nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a class="btn btn-primary seg-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar por WhatsApp</a></nav>
 <div class="actions">
 <div id="authButtons"><button class="btn btn-login" onclick="openLoginModal()" aria-label="Iniciar sesión"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span>Iniciar sesión</span></button></div>
 <div id="userMenu" class="user-menu" style="display:none"><div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menú de usuario"></div>
 <div class="dropdown" id="userDropdown"><a href="#" onclick="openProfileModal();return false">Mi perfil</a><a href="#" onclick="openReviewModal();return false">Dejar reseña</a><button onclick="logout()">Cerrar sesión</button></div></div>
 <a class="btn btn-primary btn-sm top-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar</a>
-<button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><svg class="icon" aria-hidden="true"><use href="#mn"/></svg></button>
 </div></div></header>
 
 <main id="inicio">
@@ -582,6 +584,8 @@ document.addEventListener('keydown',function(e){
 })();
 document.getElementById('userAvatar').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUserDropdown()}});
 document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',function(){toggleMenu(false)})});
+// si Tab sale del menú abierto, se cierra para no tapar el control que recibe el foco
+document.getElementById('navLinks').addEventListener('focusout',function(e){var t=e.relatedTarget;if(t&&!this.contains(t)&&!t.closest('.menu-btn'))toggleMenu(false)});
 
 // ============ AUTENTICACIÓN ============
 function signInWithGoogle(){
