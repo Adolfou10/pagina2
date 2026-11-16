@@ -190,7 +190,8 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .step{position:relative;padding:0 8px 0 0}
 .num{position:relative;width:50px;height:50px;border-radius:50%;background:var(--bg);color:var(--ink);display:grid;place-items:center;font:700 1.125rem var(--font);font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 3px var(--c,var(--heat))}
 .step:nth-child(1){--c:#B14CFF}.step:nth-child(2){--c:#9A62FF}.step:nth-child(3){--c:#7590FF}.step:nth-child(4){--c:#4CC9FF}
-.step h3{margin:22px 0 8px;font:600 1.25rem/1.3 var(--font);color:var(--ink)}
+.step h3{display:flex;align-items:center;gap:10px;margin:22px 0 8px;font:600 1.25rem/1.3 var(--font);color:var(--ink)}
+.step h3 .icon{width:22px;height:22px;color:var(--c)}
 .step p{max-width:28ch}
 @media(max-width:62.5em){
   .steps{grid-template-columns:1fr;gap:28px}
@@ -354,6 +355,9 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/></symbol>
 <symbol id="i-shieldck" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
 </defs></svg>
 
 <header class="top" id="navbar"><div class="wrap">
@@ -430,10 +434,10 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <section class="band" id="proceso" style="padding-top:0"><div class="wrap">
 <h2 class="h2">Cómo trabajamos</h2>
 <ol class="steps">
-<li class="step rise" style="--i:0"><span class="num" aria-hidden="true">1</span><h3>Escríbenos</h3><p>Cuéntanos por WhatsApp qué le pasa a tu equipo.</p></li>
-<li class="step rise" style="--i:1"><span class="num" aria-hidden="true">2</span><h3>Agenda</h3><p>Coordinamos día y hora. Trae tu equipo al taller.</p></li>
-<li class="step rise" style="--i:2"><span class="num" aria-hidden="true">3</span><h3>Diagnóstico</h3><p>Revisamos el equipo y te explicamos qué tiene y cuánto cuesta.</p></li>
-<li class="step rise" style="--i:3"><span class="num" aria-hidden="true">4</span><h3>Entrega</h3><p>Hacemos el trabajo y probamos que todo funcione antes de entregarlo.</p></li>
+<li class="step rise" style="--i:0"><span class="num" aria-hidden="true">1</span><h3><svg class="icon" aria-hidden="true"><use href="#ch"/></svg>Escríbenos</h3><p>Cuéntanos por WhatsApp qué le pasa a tu equipo.</p></li>
+<li class="step rise" style="--i:1"><span class="num" aria-hidden="true">2</span><h3><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Agenda</h3><p>Coordinamos día y hora. Trae tu equipo al taller.</p></li>
+<li class="step rise" style="--i:2"><span class="num" aria-hidden="true">3</span><h3><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Diagnóstico</h3><p>Revisamos el equipo y te explicamos qué tiene y cuánto cuesta.</p></li>
+<li class="step rise" style="--i:3"><span class="num" aria-hidden="true">4</span><h3><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>Entrega</h3><p>Hacemos el trabajo y probamos que todo funcione antes de entregarlo.</p></li>
 </ol></div></section>
 
 <section class="band" id="nosotros" style="padding-top:0"><div class="wrap">
