@@ -195,6 +195,21 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
   .steps::before{left:23px;right:auto;top:24px;bottom:24px;width:4px;height:auto;background:linear-gradient(180deg,#B14CFF,#8A6BFF 45%,#4CC9FF)}
   .step{display:grid;grid-template-columns:50px 1fr;column-gap:20px}.step .num{grid-row:span 2}.step h3{margin:10px 0 4px}
 }
+/* process con recorrido: solo si hay JS y movimiento permitido (la clase la pone el script).
+   La escala térmica se rellena con el desplazamiento; los textos se leen completos desde el inicio */
+.recorrido .steps::before{background:var(--surface-3)}
+.steps-relleno{position:absolute;z-index:0;left:24px;right:24px;top:23px;height:4px;border-radius:4px;background:var(--thermal);transform:scaleX(0);transform-origin:left center;pointer-events:none}
+.recorrido .step{z-index:1} /* el relleno va al final de la lista: los pasos se pintan encima, como la línea estática */
+.recorrido .num::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 3px var(--surface-3);transition:opacity var(--d-ui) var(--ease-out)}
+.recorrido .num{transition:transform var(--d-ui) var(--ease-out)}
+.recorrido .step h3 .icon{opacity:.35;transition:opacity var(--d-ui) var(--ease-out),transform var(--d-ui) var(--ease-out)}
+.recorrido .step.activo .num::after{opacity:0}
+.recorrido .step.activo h3 .icon{opacity:1}
+.recorrido .step.actual .num{transform:scale(1.08)}
+.recorrido .step.actual h3 .icon{transform:scale(1.15)}
+@media(max-width:62.5em){
+  .steps-relleno{left:23px;right:auto;top:24px;bottom:24px;width:4px;height:auto;background:linear-gradient(180deg,#B14CFF,#8A6BFF 45%,#4CC9FF);transform:scaleY(0);transform-origin:center top}
+}
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:start}
 @media(min-width:62.5em){.about{grid-template-columns:4fr 5fr 4fr;gap:clamp(40px,5vw,72px)}.about.no-photo{grid-template-columns:7fr 5fr}}
@@ -843,6 +858,37 @@ document.querySelectorAll('.plan .more').forEach(function(b){b.addEventListener(
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting||e.boundingClientRect.bottom<0){show(e.target);io.unobserve(e.target)}})},{rootMargin:'0px 0px 10% 0px'});
   els.forEach(function(e){io.observe(e)});
   addEventListener('scroll',function(){els.forEach(function(e){if(!e.classList.contains('in')&&e.offsetParent&&e.getBoundingClientRect().top<innerHeight){show(e);io.unobserve(e)}})},{passive:true});
+})();
+// Cómo trabajamos: la escala térmica avanza con el desplazamiento y cada paso se enciende al llegar su turno.
+// Sin JS o con movimiento reducido no se activa: queda la composición estática (línea completa y pasos encendidos).
+(function(){var ol=document.querySelector('#proceso .steps');if(!ol||!('IntersectionObserver' in window))return;
+  var rm=matchMedia('(prefers-reduced-motion: reduce)');if(rm.matches)return;
+  var sec=ol.closest('section'),pasos=[].slice.call(ol.querySelectorAll('.step')),fill=document.createElement('li');
+  fill.className='steps-relleno';fill.setAttribute('aria-hidden','true');ol.appendChild(fill); // al final: no altera :nth-child de los pasos
+  sec.classList.add('recorrido');
+  var vertical=false,ini=0,largo=1,umbral=[],raf=0,actual=-2,cerca=false,ultimoP=-1;
+  function medir(){ // geometría cacheada: en cada fotograma solo se usa scrollY.
+    // offset* ignora transformaciones: los pasos pueden estar entrando con .rise (translateY) al medir
+    var w=fill.offsetWidth,h=fill.offsetHeight;vertical=w<h;
+    ini=ol.getBoundingClientRect().top+scrollY+fill.offsetTop;largo=vertical?h:w;
+    umbral=pasos.map(function(li){var n=li.querySelector('.num');
+      return vertical?(li.offsetTop+n.offsetTop+n.offsetHeight/2-fill.offsetTop)/h:(li.offsetLeft+n.offsetLeft+n.offsetWidth/2-fill.offsetLeft)/w});
+    ultimoP=-1;pintar()}
+  function progreso(){var vh=innerHeight;
+    // vertical (móvil): la línea llega hasta el 60 % de la pantalla; horizontal: se completa mientras la fila sube del 80 % al 35 %
+    var p=vertical?(scrollY+vh*.6-ini)/largo:(scrollY+vh*.8-ini)/(vh*.45);return p<0?0:p>1?1:p}
+  function pintar(){raf=0;var p=progreso();if(p===ultimoP)return;ultimoP=p;
+    fill.style.transform=(vertical?'scaleY(':'scaleX(')+p+')';
+    var n=-1;if(p>0)umbral.forEach(function(u,i){if(p>=u-.001)n=i}); // ningún paso se enciende antes de que arranque la línea
+    if(n!==actual){actual=n;pasos.forEach(function(li,i){li.classList.toggle('activo',i<=n);li.classList.toggle('actual',i===n)})}}
+  function alDesplazar(){if(!raf)raf=requestAnimationFrame(pintar)}
+  new IntersectionObserver(function(es){var v=es[0].isIntersecting;if(v===cerca)return;cerca=v;
+    if(v){addEventListener('scroll',alDesplazar,{passive:true});alDesplazar()}else removeEventListener('scroll',alDesplazar)},{rootMargin:'50% 0px'}).observe(sec);
+  if('ResizeObserver' in window)new ResizeObserver(medir).observe(ol);else addEventListener('resize',medir);
+  addEventListener('load',medir);medir();
+  // Si el usuario activa el movimiento reducido con la página abierta, se vuelve a la composición estática
+  (rm.addEventListener?rm.addEventListener.bind(rm,'change'):rm.addListener.bind(rm))(function(e){if(!e.matches)return;
+    removeEventListener('scroll',alDesplazar);sec.classList.remove('recorrido');fill.remove();pasos.forEach(function(li){li.classList.remove('activo','actual')})});
 })();
 // miniweb: puntos de luz que dibujan un monitor con una ventana de diagnóstico.
 // Escritorio: se ensamblan al entrar, derivan en reposo y reaccionan al cursor. Táctil o movimiento reducido: dibujo estático.
