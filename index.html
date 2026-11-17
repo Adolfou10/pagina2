@@ -120,39 +120,34 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 /* hero */
 .hero{padding:clamp(40px,7vw,104px) 0 var(--section);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px;align-items:center}
-@media(min-width:62.5em){.hero-grid{grid-template-columns:1fr 1fr;gap:clamp(48px,6vw,96px)}}
+@media(min-width:62.5em){.hero-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(32px,4vw,64px)}}
 .hero h1{font-size:clamp(2.6rem,6.4vw,5.25rem);line-height:.98;max-width:11ch;text-wrap:balance}
 .lead{max-width:34rem;margin-top:24px;font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.55;color:var(--ink-2);text-wrap:pretty}
 .cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:32px}
 .hero .btn{min-height:52px}
 @media(max-width:37.5em){.hero .cta-row .btn{flex:1 1 100%}.btn{white-space:normal;padding-block:10px}}
-.trust{display:grid;grid-template-columns:repeat(2,max-content);gap:14px 32px;margin-top:40px}
+.trust{display:grid;grid-template-columns:repeat(2,minmax(0,max-content));gap:14px 32px;margin-top:40px}
 @media(max-width:37.5em){.trust{grid-template-columns:1fr}}
 .trust li{display:flex;align-items:center;gap:10px;font-size:.9375rem;color:var(--ink-2)}
 .trust .icon{width:20px;height:20px;color:var(--cool)}
 .trust b{color:var(--ink);font-weight:600}
 /* la foto no supera su ancho nativo (800px) */
-.stage{position:relative;width:100%;max-width:640px;justify-self:center}
+.stage{position:relative;width:100%;max-width:720px;justify-self:center}
 .stage::before{content:"";position:absolute;inset:-18% -14% -10% -10%;background:radial-gradient(closest-side,rgba(177,76,255,.24),transparent);z-index:-1;pointer-events:none}
-.hero-photo{aspect-ratio:4/3;overflow:hidden;background:var(--surface-1);clip-path:var(--chip-lg);border-radius:var(--radius) 0 var(--radius) var(--radius)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.ticket{position:relative;isolation:isolate;margin:-56px 16px 0;padding:20px 22px 22px}
-.ticket::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--surface-1);clip-path:var(--chip-md);border-radius:var(--radius) 0 var(--radius) var(--radius);box-shadow:0 20px 48px -12px rgba(5,3,15,.7)}
-@media(min-width:62.5em){.ticket{position:absolute;left:-48px;bottom:-56px;margin:0;width:min(360px,80%)}}
-.ticket-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px}
-.ticket-head b{flex:1 1 12rem;font-size:.9375rem;font-weight:600;color:var(--ink)}
-.ticket-head span{font-size:.8125rem;color:var(--ink-3);white-space:nowrap}
-.sample{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:4px;background:var(--surface-2);color:var(--ink-2);font-style:normal;font-size:.75rem;font-weight:600;line-height:1.3;vertical-align:2px}
-.checks{display:grid;gap:8px;margin:14px 0 18px}
-.checks li{display:flex;gap:10px;align-items:center;font-size:.875rem;color:var(--ink-2)}
-.checks .icon{width:16px;height:16px;color:var(--ok)}
-.thermo{position:relative;height:8px;border-radius:8px;background:var(--thermal)}
-.thermo-run{position:absolute;inset:0;width:calc(100% - 16px)}
-.thermo-knob{position:absolute;top:50%;left:0;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 4px rgba(241,238,255,.16)}
-.js .thermo-run.cooled{transform:translateX(100%);transition:transform 1400ms var(--ease-in-out)}
-.thermo-labels{display:flex;justify-content:space-between;margin-top:10px;font-size:.8125rem;color:var(--ink-3)}
-.status{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:.875rem;font-weight:600;color:var(--ok)}
-.status i{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+/* miniweb: constelación de puntos que dibuja un monitor con una ventana de diagnóstico.
+   Tokens de DESIGN_web.md acotados a .mw: no afectan al menú, los precios ni las reseñas */
+.mw{--mw-iris:#8052ff;--mw-saffron:#ffb829;--mw-verdant:#15846e;--mw-bone:#fff;--mw-ash:#9a9a9a;position:relative;aspect-ratio:5/4}
+.mw canvas{display:none;width:100%;height:100%}
+/* respaldo: la foto de la RTX se ve sin JS o si el lienzo no arranca. Con JS se oculta desde el principio
+   (la clase js se pone en <head>) y, al ser lazy y no mostrarse, no se descarga */
+.mw-photo{position:absolute;inset:0;overflow:hidden;background:var(--surface-1);clip-path:var(--chip-lg);border-radius:var(--radius) 0 var(--radius) var(--radius)}
+.mw-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.js .mw-photo{display:none}.js .mw canvas{display:block}
+.js .mw-fallback .mw-photo{display:block}.js .mw-fallback canvas{display:none}
+/* movimiento ambiental: solo transform, lo compone el navegador fuera del hilo principal */
+.mw-live{animation:mw-breathe 7s ease-in-out infinite}
+.mw-live canvas{transition:transform 900ms var(--ease-out)}
+@keyframes mw-breathe{50%{transform:translate3d(0,-6px,0) scale(1.012)}}
 /* entradas: el contenido es visible si el JS no carga */
 .js .rise{opacity:0;transform:translateY(20px)}
 .js .rise.in{opacity:1;transform:none;transition:opacity var(--d-enter) var(--ease-out),transform var(--d-enter) var(--ease-out);transition-delay:calc(var(--i,0) * var(--stagger))}
@@ -323,9 +318,8 @@ html.modal-open{overflow:hidden}
 @media(max-width:37.5em){
   .fg{grid-template-columns:1fr}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rise{transform:none}.js .rise.in{transition:opacity 150ms linear;transition-delay:0s}.js .thermo-run,.js .thermo-run.cooled{transform:translateX(100%);transition:none}.btn:active{transform:none}*{transition-duration:0s!important}.js .rise.in{transition-duration:150ms!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rise{transform:none}.js .rise.in{transition:opacity 150ms linear;transition-delay:0s}.btn:active{transform:none}*{transition-duration:0s!important}.js .rise.in{transition-duration:150ms!important}}
 </style>
-<link rel="preload" as="image" href="img/trabajo-gpu-rtx.webp" type="image/webp">
 <script>
 document.documentElement.classList.add('js');
 function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.querySelector('#trabajo figure')){var s=document.getElementById('trabajo');if(s)s.style.display='none'}}
@@ -386,20 +380,8 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <li><svg class="icon" aria-hidden="true"><use href="#i-shieldck"/></svg><span><b>Pagas al terminar</b></span></li>
 </ul>
 </div>
-<div class="stage rise" style="--i:2">
-<figure class="hero-photo"><picture><source srcset="img/trabajo-gpu-rtx.webp" type="image/webp"><img src="img/trabajo-gpu-rtx.jpg" width="800" height="600" alt="Tarjeta gráfica MSI GeForce RTX en mantenimiento en el taller" fetchpriority="high"></picture></figure>
-<div class="ticket" role="group" aria-label="Ficha de servicio con datos de ejemplo">
-<div class="ticket-head"><b>Ficha de servicio <em class="sample">Datos de ejemplo</em></b><span>Hardware Gamer</span></div>
-<ul class="checks">
-<li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Diagnóstico completo de componentes</li>
-<li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Limpieza profunda avanzada</li>
-<li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Pasta térmica de calidad</li>
-<li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Test de temperaturas bajo carga</li>
-</ul>
-<div class="thermo" aria-hidden="true"><div class="thermo-run" id="thermoRun"><span class="thermo-knob"></span></div></div>
-<div class="thermo-labels" aria-hidden="true"><span>Antes</span><span>Después</span></div>
-<p class="status"><i aria-hidden="true"></i>Listo para entregar</p>
-</div>
+<div class="stage rise" style="--i:2" id="miniweb">
+<figure class="mw"><picture class="mw-photo"><source srcset="img/trabajo-gpu-rtx.webp" type="image/webp"><img src="img/trabajo-gpu-rtx.jpg" width="800" height="600" alt="Tarjeta gráfica MSI GeForce RTX en mantenimiento en el taller" loading="lazy" decoding="async"></picture><canvas id="mwField" role="img" aria-label="Monitor de PC dibujado con puntos de luz, con una ventana de diagnóstico en pantalla"></canvas></figure>
 </div>
 </div></section>
 
@@ -746,7 +728,75 @@ document.querySelectorAll('.plan .more').forEach(function(b){b.addEventListener(
   els.forEach(function(e){io.observe(e)});
   addEventListener('scroll',function(){els.forEach(function(e){if(!e.classList.contains('in')&&e.offsetParent&&e.getBoundingClientRect().top<innerHeight){show(e);io.unobserve(e)}})},{passive:true});
 })();
-setTimeout(function(){var t=document.getElementById('thermoRun');if(t)t.classList.add('cooled')},700);
+// miniweb: puntos de luz que dibujan un monitor con una ventana de diagnóstico.
+// Escritorio: se ensamblan al entrar, derivan en reposo y reaccionan al cursor. Táctil o movimiento reducido: dibujo estático.
+(function(){var cv=document.getElementById('mwField');if(!cv)return;var fig=cv.parentNode,failed=false;
+  function fallback(){failed=true;fig.classList.remove('mw-live');fig.classList.add('mw-fallback')} // muestra la foto de respaldo
+  var ctx=cv.getContext&&cv.getContext('2d');if(!ctx||!ctx.roundRect)return fallback();
+  var cs=getComputedStyle(fig),rs=getComputedStyle(document.documentElement);
+  function tok(el,n){return el.getPropertyValue(n).trim()}
+  var C={iris:tok(cs,'--mw-iris'),saffron:tok(cs,'--mw-saffron'),verdant:tok(cs,'--mw-verdant'),bone:tok(cs,'--mw-bone'),ash:tok(cs,'--mw-ash'),heat:tok(rs,'--heat'),cool:tok(rs,'--cool'),ok:tok(rs,'--ok')};
+  var live=matchMedia('(hover:hover) and (pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var P=[],W=0,H=0,dpr=1,mx=-1e4,my=-1e4,raf=0,visible=true,spr={},t0=0,base=null;
+  // la partícula de la referencia: triángulo de contorno, dibujado una vez por color
+  function sprite(c){if(spr[c])return spr[c];var e=document.createElement('canvas'),z=Math.ceil(12*dpr);e.width=e.height=z;var g=e.getContext('2d');
+    g.scale(z/12,z/12);g.strokeStyle=c;g.lineWidth=1.6;g.lineJoin='round';g.beginPath();g.moveTo(6,1.5);g.lineTo(10.6,10);g.lineTo(1.4,10);g.closePath();g.stroke();return spr[c]=e}
+  var Z=3.6;
+  function build(){P=[];spr={};var k=W/400,gap=4,S=gap/k*.9,o=document.createElement('canvas');o.width=Math.ceil(W);o.height=Math.ceil(H);
+    var g=o.getContext('2d',{willReadFrequently:true}),fam=getComputedStyle(document.body).fontFamily;
+    function rr(x,y,w,h,r){g.beginPath();g.roundRect(x,y,w,h,r)}
+    function pl(pts){g.beginPath();g.moveTo(pts[0],pts[1]);for(var i=2;i<pts.length;i+=2)g.lineTo(pts[i],pts[i+1]);g.stroke()}
+    function add(draw,cols,a,wf){g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,o.width,o.height);g.setTransform(k,0,0,k,0,0);g.lineWidth=S*(wf||1);g.lineCap='round';g.lineJoin='round';draw();
+      var d=g.getImageData(0,0,o.width,o.height).data;
+      for(var y=gap/2;y<o.height;y+=gap)for(var x=gap/2;x<o.width;x+=gap){if(d[((y|0)*o.width+(x|0))*4+3]<110)continue;
+        var c=typeof cols==='function'?cols(x/W):cols[(Math.random()*cols.length)|0],an=Math.random()*6.283,r=W*(.12+Math.random()*.22);
+        P.push({x:x,y:y,c:Math.random()<.05?C.saffron:c,a:a,ox:0,oy:0,l:0,sx:Math.cos(an)*r,sy:Math.sin(an)*r,dl:Math.random()*350})}}
+    add(function(){rr(18,8,364,236,20);g.stroke()},[C.iris,C.heat,C.cool,C.bone],.85,2.2);                 // carcasa del monitor
+    add(function(){rr(32,22,336,196,8);g.stroke()},[C.ash,C.iris],.3);                                    // borde de la pantalla
+    add(function(){g.beginPath();g.moveTo(182,244);g.lineTo(172,288);g.lineTo(228,288);g.lineTo(218,244);g.fill();rr(116,286,168,14,7);g.fill()},[C.iris,C.heat,C.bone],.7); // pie y base
+    add(function(){g.beginPath();g.arc(200,231,3.4,0,7);g.fill()},[C.ok],1);                               // piloto de encendido
+    add(function(){rr(58,40,284,160,12);g.stroke();pl([58,70,342,70])},[C.iris,C.cool],.8,1.6);            // ventana de diagnóstico
+    add(function(){[74,88,102].forEach(function(x){g.beginPath();g.arc(x,54,3.2,0,7);g.fill()})},[C.heat,C.saffron,C.cool],.9);
+    add(function(){if(W>=420){g.font='700 21px '+fam;g.fillText('Diagnóstico',118,63)}else pl([118,55,214,55])},[C.bone],.95); // en pantallas estrechas el texto no se lee: barra de título
+    add(function(){pl([76,106,140,106,150,86,164,128,176,94,186,106,324,106])},[C.cool,C.bone],.95,1.7);    // pulso
+    add(function(){[134,156,178].forEach(function(y){pl([76,y,100,y])})},[C.ash],.45);                      // etiquetas
+    add(function(){[[134,250],[156,200],[178,276]].forEach(function(b){pl([112,b[0],b[1],b[0]])})},function(t){return t<.42?C.heat:t<.55?C.iris:C.cool},.9,1.7); // barras
+    add(function(){[134,156,178].forEach(function(y){pl([298,y,305,y+6,320,y-7])})},[C.ok],1,1.6);           // verificaciones
+    // campo ambiental: posiciones fuera de la rejilla, se queda en la capa base
+    for(var i=0;i<110;i++)P.push({x:Math.random()*W,y:Math.random()*H,c:[C.iris,C.saffron,C.verdant,C.cool,C.heat][i%5],a:.2,ox:0,oy:0,l:0,sx:0,sy:0,dl:0,amb:1});
+    // capa base: todas las partículas en reposo, dibujada una sola vez
+    base=document.createElement('canvas');base.width=cv.width;base.height=cv.height;var b=base.getContext('2d');b.setTransform(dpr,0,0,dpr,0,0);
+    for(var j=0;j<P.length;j++){var q=P[j];b.globalAlpha=q.a;b.drawImage(sprite(q.c),q.x-Z/2,q.y-Z/2,Z,Z)}
+  }
+  function layout(){var r=cv.getBoundingClientRect();if(!r.width)return;W=r.width;H=r.height;dpr=Math.min(devicePixelRatio||1,2);cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);build()}
+  function dot(p,x,y){var z=Z*(1+p.l*1.1);ctx.globalAlpha=Math.min(1,p.a+p.l*1.4);ctx.drawImage(sprite(p.l>.35?C.bone:p.c),x-z/2,y-z/2,z,z)}
+  // devuelve true si algo sigue moviéndose
+  function draw(t){ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);var el=t-t0,busy=false,i,p;
+    if(live&&el<1700){ // entrada: los puntos se ensamblan desde una nube dispersa
+      for(i=0;i<P.length;i++){p=P[i];var e=Math.min(1,Math.max(0,(el-p.dl)/1100));e=1-Math.pow(1-e,3);dot(p,p.x+p.sx*(1-e),p.y+p.sy*(1-e))}
+      ctx.globalAlpha=1;return true}
+    ctx.drawImage(base,0,0,W,H);if(!live)return false;
+    var R=W*.15,R2=R*R,push=W*.014;
+    for(i=0;i<P.length;i++){p=P[i];if(p.amb)continue;var dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;
+      if(d2>=R2&&p.l<.004&&p.ox*p.ox+p.oy*p.oy<.01){p.l=p.ox=p.oy=0;continue} // en reposo: ya está en la capa base
+      var tx=0,ty=0,tl=0;if(d2<R2){var d=Math.sqrt(d2)||1,f=1-d/R;f*=f;tx=dx/d*f*push;ty=dy/d*f*push;tl=f}
+      p.ox+=(tx-p.ox)*.12;p.oy+=(ty-p.oy)*.12;p.l+=(tl-p.l)*.12;busy=busy||d2>=R2;
+      ctx.clearRect(p.x-2,p.y-2,4,4);dot(p,p.x+p.ox,p.y+p.oy)} // quita su copia de la base y lo dibuja desplazado
+    ctx.globalAlpha=1;return busy||mx>-1e3}
+  function loop(t){raf=0;var more;try{more=draw(t)}catch(e){return fallback()}if(more&&visible)raf=requestAnimationFrame(loop)}
+  function start(){if(live&&visible&&!raf&&!failed)raf=requestAnimationFrame(loop)}
+  function redraw(){if(failed)return;try{layout();draw(performance.now())}catch(e){return fallback()}start()}
+  t0=performance.now();
+  if(live)fig.classList.add('mw-live');
+  redraw();if(failed)return;if(document.fonts)document.fonts.ready.then(redraw);
+  var lastW=0;new ResizeObserver(function(){var w=cv.getBoundingClientRect().width;if(Math.abs(w-lastW)<1)return;lastW=w;redraw()}).observe(cv);
+  if(!live)return;
+  var st=document.getElementById('miniweb');
+  st.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;
+    cv.style.transform='translate3d('+((mx/W-.5)*8).toFixed(1)+'px,'+((my/H-.5)*8).toFixed(1)+'px,0)';start()}); // la figura se inclina un poco hacia el cursor
+  st.addEventListener('pointerleave',function(){mx=my=-1e4;cv.style.transform='';start()});
+  new IntersectionObserver(function(es){visible=es[0].isIntersecting;start()}).observe(cv);
+})();
 
 loadReviews();
 </script>
