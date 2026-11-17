@@ -318,6 +318,59 @@ html.modal-open{overflow:hidden}
 @media(max-width:37.5em){
   .fg{grid-template-columns:1fr}
 }
+/* Desarrollo: páginas web y sistemas a medida */
+.dev-h{margin-top:clamp(40px,5vw,56px);font-size:1.5rem;line-height:1.2;letter-spacing:-.02em;font-weight:600;color:var(--ink)}
+.dev-p{margin-top:8px;max-width:40rem;text-wrap:pretty}
+.vitrina{display:grid;gap:28px;margin-top:20px}
+@media(min-width:48em){.vitrina{grid-template-columns:1fr 1fr}}
+.vit{min-width:0}
+.vit-btn{position:relative;isolation:isolate;display:block;width:100%;padding:clamp(14px,3vw,36px);border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:zoom-in;transition:transform var(--d-press) var(--ease-out)}
+.vit-btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--surface-1);clip-path:var(--chip-md);border-radius:var(--radius) 0 var(--radius) var(--radius);transition:background-color var(--d-ui) ease}
+.vit-btn:active{transform:scale(.985)}
+.vit-btn img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:var(--radius);transition:transform var(--d-ui) var(--ease-out)}
+.vit-amp{position:absolute;right:clamp(22px,3.6vw,46px);bottom:clamp(22px,3.6vw,46px);display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:4px;background:rgba(13,10,31,.86);font-size:.8125rem;font-weight:600;color:var(--ink)}
+.vit-amp .icon{width:16px;height:16px}
+@media(hover:hover) and (pointer:fine){.vit-btn:hover::before{background:var(--surface-2)}.vit-btn:hover img{transform:translateY(-4px)}}
+.vit figcaption{margin-top:14px;font-size:.9375rem;color:var(--ink-3)}
+.vit figcaption b{display:flex;align-items:center;gap:8px;font-size:1.0625rem;font-weight:600;color:var(--ink)}
+.demo-tag{padding:3px 8px;border-radius:4px;background:var(--surface-2);font-size:.75rem;font-style:normal;font-weight:600;line-height:1.2;color:var(--heat-ink)}
+.dev-cta{margin-top:28px}
+.visor .modal-content{max-width:min(1180px,100%);padding:20px}
+.visor h2{font-size:1.125rem;line-height:1.3;letter-spacing:-.01em;padding:4px 56px 14px 4px}
+.visor img{width:100%;height:auto;max-height:calc(92vh - 110px);object-fit:contain;border-radius:var(--radius)}
+.sis{position:relative;isolation:isolate;display:grid;gap:28px;margin-top:24px;padding:var(--card-pad)}
+.sis::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--surface-1);clip-path:var(--chip-md);border-radius:var(--radius) 0 var(--radius) var(--radius)}
+.sis::after{content:"";position:absolute;top:0;left:0;width:calc(100% - var(--cut-md));height:3px;background:var(--thermal);border-radius:var(--radius) 0 0 0}
+@media(min-width:62.5em){.sis{grid-template-columns:minmax(0,1fr) minmax(0,1.75fr);gap:40px;align-items:start}}
+.sis-tag{font-size:.8125rem;font-weight:600;color:var(--heat-ink)}
+.sis h4{margin:8px 0 0;font-size:1.5rem;line-height:1.2;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
+.sis-info>p:not(.sis-tag){margin-top:10px;text-wrap:pretty}
+.sis .tabs{margin-top:22px}
+.sis .btn{margin-top:24px}
+.sis-vista{min-width:0;padding:16px;background:var(--surface-2);border-radius:var(--radius);font-variant-numeric:tabular-nums}
+.sv-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;font-size:.8125rem;color:var(--ink-3)}
+.sv-top b{font-size:1rem;color:var(--ink)}
+.sv-mesas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sv-mesa{padding:10px 12px;background:var(--surface-1);border-radius:4px;font-size:.8125rem;line-height:1.35}
+.sv-mesa b{display:block;font-size:1.375rem;line-height:1.1;color:var(--ink)}
+.e-libre{color:var(--ink-3)}.e-anotada{color:var(--cool)}.e-entregada{color:var(--heat-ink)}.e-pagada{color:var(--ok)}
+.sv-comanda{margin-top:12px;padding:12px;background:var(--surface-1);border-radius:4px;font-size:.875rem}
+.sv-fila{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--surface-3)}
+.sv-fila:last-child{border:0}.sv-total{font-weight:700;color:var(--ink)}
+.sv-res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.sv-res div{padding:10px 12px;background:var(--surface-1);border-radius:4px;font-size:.8125rem}
+.sv-res b{display:block;font-size:1.125rem;color:var(--ink)}
+.sv-tabla .sv-fila{display:grid;grid-template-columns:4.5em minmax(0,1fr) auto 7.5em;align-items:center}
+.sv-tabla .sv-fila span:last-child{text-align:right}
+@media(max-width:37.5em){
+  .sv-mesas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sv-res{grid-template-columns:1fr}
+  .sv-tabla .sv-fila{grid-template-columns:minmax(0,1fr) auto;row-gap:2px}
+  .sv-tabla .sv-fila span:nth-child(2){grid-column:1;grid-row:2;color:var(--ink-3);font-size:.8125rem}
+  .sv-tabla .sv-fila span:last-child{grid-column:2;grid-row:2}
+  .dev-cta,.sis .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.vit-btn:active{transform:none}.vit-btn:hover img{transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rise{transform:none}.js .rise.in{transition:opacity 150ms linear;transition-delay:0s}.btn:active{transform:none}*{transition-duration:0s!important}.js .rise.in{transition-duration:150ms!important}}
 </style>
 <script>
@@ -354,12 +407,13 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
 <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+<symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
 </defs></svg>
 
 <header class="top" id="navbar"><div class="wrap">
 <a class="brand" href="#inicio" aria-label="TECNODOLPHY, inicio"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>TECNODOLPHY</a>
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><svg class="icon" aria-hidden="true"><use href="#mn"/></svg></button>
-<nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a class="btn btn-primary seg-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar por WhatsApp</a></nav>
+<nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#desarrollo">Desarrollo</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a class="btn btn-primary seg-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar por WhatsApp</a></nav>
 <div class="actions">
 <div id="authButtons"><button class="btn btn-login" onclick="openLoginModal()" aria-label="Iniciar sesión"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span>Iniciar sesión</span></button></div>
 <div id="userMenu" class="user-menu" style="display:none"><div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menú de usuario"></div>
@@ -399,6 +453,54 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <article class="plan rise" style="--i:1"><div><h3>Hardware Gamer</h3><p class="d">Limpieza profunda y mejor refrigeración.</p></div><p class="price"><b>160</b><i>Bs</i></p><ul class="inc"><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Limpieza profunda avanzada</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Pasta térmica de calidad</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Diagnóstico completo de componentes</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Optimización de refrigeración</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Test de temperaturas bajo carga</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Orden profesional de cables</li></ul><button class="more" type="button" aria-expanded="false">Ver los 6 incluidos</button><a class="btn btn-white btn-block" href="https://wa.me/59169470880?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Gamer%20%28160bs%29.%0AEquipo%3A%20%0AFalla%20o%20motivo%3A%20%0AD%C3%ADa%20u%20horario%20preferido%3A%20" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar Hardware Gamer</a></article>
 <article class="plan featured rise" style="--i:2"><div><h3>Combo Gamer</h3><p class="d">Rendimiento máximo en un solo servicio.</p></div><p class="price"><b>190</b><i>Bs</i><span class="tag">Ahorras 20 Bs</span></p><ul class="inc"><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Software gamer completo</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Hardware gamer completo</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Overclocking seguro (opcional)</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Benchmark de rendimiento</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Reporte técnico detallado</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Soporte prioritario por WhatsApp</li></ul><button class="more" type="button" aria-expanded="false">Ver los 6 incluidos</button><a class="btn btn-primary btn-block" href="https://wa.me/59169470880?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20Combo%20Gamer%20%28190bs%29.%0AEquipo%3A%20%0AFalla%20o%20motivo%3A%20%0AD%C3%ADa%20u%20horario%20preferido%3A%20" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar Combo Gamer</a></article>
 </div></div>
+</div></section>
+
+<section class="band" id="desarrollo" style="padding-top:0"><div class="wrap">
+<h2 class="h2">Páginas web y sistemas a medida</h2><p class="sub">Tu negocio en internet y tu trabajo diario en orden, con herramientas hechas para cómo trabajas.</p>
+
+<h3 class="dev-h">Páginas web</h3>
+<div class="vitrina">
+<figure class="vit rise" style="--i:0"><button class="vit-btn" type="button" data-titulo="TecnoDolphy · portada con partículas" aria-label="Ampliar la vista de la web de TecnoDolphy"><picture><source srcset="img/web-tecnodolphy.webp" type="image/webp"><img src="img/web-tecnodolphy.jpg" width="1232" height="770" alt="Portada de la web de TecnoDolphy: un monitor dibujado con puntos de luz junto al titular «Tu PC rinde otra vez»" loading="lazy" decoding="async"></picture><span class="vit-amp" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg>Ampliar</span></button><figcaption><b>TecnoDolphy</b>Esta web, con su portada interactiva de partículas</figcaption></figure>
+<figure class="vit rise" style="--i:1"><button class="vit-btn" type="button" data-titulo="Web para restaurante · Demo" aria-label="Ampliar la vista de la demo de web para restaurante"><picture><source srcset="img/web-restaurante-demo.webp" type="image/webp"><img src="img/web-restaurante-demo.jpg" width="1280" height="800" alt="Demo de web para un restaurante ficticio, con la carta del día y un botón para reservar por WhatsApp" loading="lazy" decoding="async"></picture><span class="vit-amp" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg>Ampliar</span></button><figcaption><b>Web para restaurante <em class="demo-tag">Demo</em></b>Carta del día y reservas por WhatsApp</figcaption></figure>
+</div>
+<a class="btn btn-primary dev-cta" href="https://wa.me/59169470880?text=Hola%20TecnoDolphy%2C%20quiero%20cotizar%20una%20p%C3%A1gina%20web%20para%20mi%20negocio." target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Cotizar una web</a>
+
+<h3 class="dev-h">Sistemas a medida</h3>
+<p class="dev-p">Construimos sistemas para organizar procesos como pedidos, inventario, ventas o reportes.</p>
+<article class="sis rise">
+<div class="sis-info"><p class="sis-tag">Demostración con datos ficticios</p><h4>La Ramona · Gestión para restaurantes</h4><p>Mesas y comandas desde el celular, cobros en efectivo o QR y la conciliación de los pagos QR con el banco.</p>
+<div class="tabs" role="tablist" aria-label="Vista de La Ramona" data-active="0"><span class="tab-ind" aria-hidden="true"></span><button class="tab" role="tab" id="lr-t1" aria-selected="true" aria-controls="lr-p1" tabindex="0">Mesas y comandas</button><button class="tab" role="tab" id="lr-t2" aria-selected="false" aria-controls="lr-p2" tabindex="-1">Conciliación QR</button></div>
+<a class="btn btn-primary" href="https://wa.me/59169470880?text=Hola%2C%20TecnoDolphy.%20Quisiera%20cotizar%20un%20sistema%20a%20medida.%20El%20proceso%20que%20quiero%20organizar%20es%3A%20" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Cotizar un sistema</a></div>
+<div class="sis-vista">
+<div id="lr-p1" role="tabpanel" aria-labelledby="lr-t1" tabindex="0">
+<div class="sv-top"><b>Mesas</b><span>Demo · datos ficticios</span></div>
+<ul class="sv-mesas">
+<li class="sv-mesa"><b>1</b><span class="e-libre">Libre</span></li>
+<li class="sv-mesa"><b>2</b><span class="e-anotada">Anotada</span><br>Bs 47,00</li>
+<li class="sv-mesa"><b>3</b><span class="e-entregada">Entregada</span><br>Bs 69,00</li>
+<li class="sv-mesa"><b>4</b><span class="e-libre">Libre</span></li>
+<li class="sv-mesa"><b>5</b><span class="e-pagada">Pagada</span><br>Bs 50,00</li>
+<li class="sv-mesa"><b>7</b><span class="e-anotada">Anotada</span><br>Bs 25,00</li>
+<li class="sv-mesa"><b>9</b><span class="e-libre">Libre</span></li>
+<li class="sv-mesa"><b>12</b><span class="e-libre">Libre</span></li>
+</ul>
+<div class="sv-comanda"><div class="sv-top" style="margin:0 0 4px"><b>Mesa 2 · Comanda</b><span class="e-anotada">Anotada</span></div>
+<div class="sv-fila"><span>1 × Sopa y segundo</span><span>Bs 25,00</span></div>
+<div class="sv-fila"><span>1 × Milanesa de pollo</span><span>Bs 22,00</span></div>
+<div class="sv-fila sv-total"><span>Total</span><span>Bs 47,00</span></div></div>
+</div>
+<div id="lr-p2" role="tabpanel" aria-labelledby="lr-t2" tabindex="0" hidden>
+<div class="sv-top"><b>Conciliación QR · Octubre</b><span>Demo · datos ficticios</span></div>
+<div class="sv-res"><div>Cobros QR<b>Bs 1.240,00</b></div><div>Conciliados<b class="e-pagada">18</b></div><div>Por revisar<b class="e-entregada">1</b></div></div>
+<div class="sv-comanda sv-tabla">
+<div class="sv-fila"><span>28/10</span><span>QR-48213 · Banco</span><span>Bs 69,00</span><span class="e-pagada">Conciliado</span></div>
+<div class="sv-fila"><span>28/10</span><span>QR-48197 · Banco</span><span>Bs 47,00</span><span class="e-pagada">Conciliado</span></div>
+<div class="sv-fila"><span>27/10</span><span>QR-48102 · Banco</span><span>Bs 25,00</span><span class="e-entregada">Falta en el extracto</span></div>
+<div class="sv-fila"><span>27/10</span><span>QR-48090 · Banco</span><span>Bs 54,00</span><span class="e-pagada">Conciliado</span></div>
+</div>
+</div>
+</div>
+</article>
 </div></section>
 
 <section class="band" id="atencion"><div class="wrap care">
@@ -477,6 +579,11 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <div><h3>Contacto</h3><a href="https://wa.me/59169470880" target="_blank" rel="noopener">WhatsApp +591 69470880</a><a href="https://www.facebook.com/profile.php?id=61582247163950" target="_blank" rel="noopener">Facebook</a><p>Lun a Sáb: 9:00 a 20:00<br>Dom: 10:00 a 18:00</p></div>
 </div><p class="foot-name" aria-hidden="true">TECNODOLPHY</p><p class="copy">© 2026 TECNODOLPHY. Todos los derechos reservados.</p></div></footer>
 <a class="wa" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> <span>WhatsApp</span></a>
+
+<div class="modal visor" id="visorModal" role="dialog" aria-modal="true" aria-labelledby="visorTitulo"><div class="modal-content">
+<button class="modal-close" onclick="closeModal('visorModal')" aria-label="Cerrar">&times;</button>
+<h2 id="visorTitulo"></h2><picture><source id="visorSrc" type="image/webp"><img id="visorImg" src="img/web-tecnodolphy.jpg" width="1232" height="770" alt="" loading="lazy" decoding="async"></picture>
+</div></div>
 
 <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="lt"><div class="modal-content">
 <button class="modal-close" onclick="closeModal('loginModal')" aria-label="Cerrar">&times;</button>
@@ -562,7 +669,7 @@ document.addEventListener('keydown',function(e){
 (function(){var wa=document.querySelector('.wa');if(!wa||!('IntersectionObserver' in window))return;
   var vis=new Set();
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)vis.add(e.target);else vis.delete(e.target)});wa.classList.toggle('hide',vis.size>0)},{threshold:.1});
-  document.querySelectorAll('.hero .cta-row,#servicios,#atencion,.cta').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.hero .cta-row,#servicios,#atencion,.cta,#desarrollo .btn').forEach(function(el){io.observe(el)});
 })();
 document.getElementById('userAvatar').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUserDropdown()}});
 document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',function(){toggleMenu(false)})});
@@ -700,19 +807,28 @@ function loadReviews(){
 }
 
 // ============ TABS ============
-var tabList=document.querySelector('.tabs'),tabBtns=[].slice.call(tabList.querySelectorAll('.tab'));
 function selectTab(t,focus){
-  tabBtns.forEach(function(b,i){var on=b===t,p=document.getElementById(b.getAttribute('aria-controls'));
+  var tabList=t.closest('.tabs');
+  [].slice.call(tabList.querySelectorAll('.tab')).forEach(function(b,i){var on=b===t,p=document.getElementById(b.getAttribute('aria-controls'));
     b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;p.hidden=!on;
     if(on){tabList.dataset.active=i;p.querySelectorAll('.rise').forEach(function(c){c.classList.remove('in');void c.offsetWidth;c.classList.add('in')})}});
   if(focus)t.focus();
 }
-tabBtns.forEach(function(t){t.addEventListener('click',function(){selectTab(t)})});
-tabList.addEventListener('keydown',function(e){
-  var i=tabBtns.indexOf(document.activeElement);if(i<0)return;
-  var n={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabBtns.length-1}[e.key];if(n===undefined)return;
-  e.preventDefault();selectTab(tabBtns[(n+tabBtns.length)%tabBtns.length],true);
+document.querySelectorAll('.tabs').forEach(function(tabList){
+  var tabBtns=[].slice.call(tabList.querySelectorAll('.tab'));
+  tabBtns.forEach(function(t){t.addEventListener('click',function(){selectTab(t)})});
+  tabList.addEventListener('keydown',function(e){
+    var i=tabBtns.indexOf(document.activeElement);if(i<0)return;
+    var n={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabBtns.length-1}[e.key];if(n===undefined)return;
+    e.preventDefault();selectTab(tabBtns[(n+tabBtns.length)%tabBtns.length],true);
+  });
 });
+// Vitrina de webs: cada miniatura se amplía en el visor (clic, toque, Enter o Espacio)
+document.querySelectorAll('.vit-btn').forEach(function(b){b.addEventListener('click',function(){
+  var img=b.querySelector('img'),v=document.getElementById('visorImg');
+  document.getElementById('visorSrc').srcset=b.querySelector('source').getAttribute('srcset');
+  v.src=img.getAttribute('src');v.alt=img.alt;v.setAttribute('width',img.getAttribute('width'));v.setAttribute('height',img.getAttribute('height'));
+  document.getElementById('visorTitulo').textContent=b.dataset.titulo;openModal('visorModal')})});
 // Enlaces del footer que abren su pestaña
 document.querySelectorAll('a[data-tab]').forEach(function(a){a.addEventListener('click',function(){selectTab(document.getElementById(a.dataset.tab))})});
 // Móvil: lista de incluidos recortada a 4
