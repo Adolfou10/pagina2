@@ -108,7 +108,8 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
 .dropdown.active{display:block}
 .dropdown a,.dropdown button{display:block;width:100%;min-height:44px;padding:12px;border:0;background:none;border-radius:4px;text-align:left;font:600 .9375rem var(--font);color:var(--ink);text-decoration:none;cursor:pointer}
 @media(hover:hover) and (pointer:fine){.seg a:hover{color:var(--ink)}.dropdown a:hover,.dropdown button:hover{background:var(--surface-2)}}
-@media(max-width:62.5em){
+/* con 8 enlaces el menú completo necesita ~1216 px: por debajo se usa el menú desplegable */
+@media(max-width:75.99em){
   .seg{display:none}.top-cta{display:none}
   /* el botón va antes del menú en el HTML para que Tab entre en los enlaces al abrirlo; queda a la izquierda de .actions con su hueco de 8px */
   .menu-btn{display:grid;flex:none;margin-right:-8px}
@@ -117,6 +118,8 @@ h1,h2,h3,p,ul,figure{margin:0}ul{padding:0;list-style:none}a{color:inherit}img,s
   .seg.active .seg-cta{display:inline-flex;margin-top:12px;padding:0 22px;color:#fff}
 }
 @media(max-width:37.5em){.btn-login{width:44px;padding:0}.btn-login span{display:none}}
+/* menú completo: la cabecera nunca pasa de 1200 px, así que «Iniciar sesión» queda solo con su icono (conserva aria-label) y los enlaces algo más juntos */
+@media(min-width:76em){.btn-login{width:44px;padding:0}.btn-login span{display:none}.seg a{padding:10px 9px}}
 /* hero */
 .hero{padding:clamp(40px,7vw,104px) 0 var(--section);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px;align-items:center}
@@ -418,6 +421,20 @@ html.modal-open{overflow:hidden}
   .dev-cta,.sis .btn{width:100%}
 }
 @media(prefers-reduced-motion:reduce){.vit-btn:active{transform:none}.vit-btn:hover img{transform:none}}
+/* Dónde encontrarnos: datos y botón al lado del mapa (escritorio) o encima (móvil) */
+.ubic{display:grid;gap:28px;align-items:center}
+@media(min-width:62.5em){.ubic{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,5vw,72px)}}
+.ubic-datos{display:grid;gap:18px;margin-top:28px}
+.ubic-datos li{display:flex;gap:14px;align-items:flex-start}
+.ubic-datos .icon{margin-top:2px;color:var(--cool)}
+.ubic-datos b{display:block;font-weight:600;color:var(--ink)}
+.ubic-datos span{display:block;color:var(--ink-2)}
+.ubic-ir{margin-top:28px}
+.ubic-ir .icon{width:20px;height:20px}
+.ubic-mapa{position:relative;isolation:isolate;min-width:0;aspect-ratio:4/3;padding:8px}
+.ubic-mapa::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--surface-1);clip-path:var(--chip-md);border-radius:var(--radius) 0 var(--radius) var(--radius)}
+.ubic-mapa iframe{display:block;width:100%;height:100%;border:0;border-radius:4px;background:var(--surface-2)}
+@media(max-width:37.5em){.ubic-mapa{aspect-ratio:1}.ubic-ir{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rise{transform:none}.js .rise.in{transition:opacity 150ms linear;transition-delay:0s}.btn:active{transform:none}*{transition-duration:0s!important}.js .rise.in{transition-duration:150ms!important}}
 </style>
 <script>
@@ -451,6 +468,8 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4a1 1 0 0 1 1-1h8l9 9-9 9z"/><circle cx="8" cy="8" r="1.5"/></symbol>
 <symbol id="i-shieldck" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5z"/><path d="m9 12 2 2 4-4"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-route" viewBox="0 0 24 24"><path d="m3 11 18-8-8 18-2-8z"/></symbol>
 <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
 <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
 <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
@@ -460,7 +479,7 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <header class="top" id="navbar"><div class="wrap">
 <a class="brand" href="#inicio" aria-label="TECNODOLPHY, inicio"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>TECNODOLPHY</a>
 <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><svg class="icon" aria-hidden="true"><use href="#mn"/></svg></button>
-<nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#desarrollo">Desarrollo</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a class="btn btn-primary seg-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar por WhatsApp</a></nav>
+<nav class="seg" id="navLinks" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#desarrollo">Desarrollo</a><a href="#atencion">Atención</a><a href="#proceso">Proceso</a><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a href="#ubicacion">Ubicación</a><a class="btn btn-primary seg-cta" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>Agendar por WhatsApp</a></nav>
 <div class="actions">
 <div id="authButtons"><button class="btn btn-login" onclick="openLoginModal()" aria-label="Iniciar sesión"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span>Iniciar sesión</span></button></div>
 <div id="userMenu" class="user-menu" style="display:none"><div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown" aria-label="Menú de usuario"></div>
@@ -638,13 +657,25 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <h2 class="display">Agenda tu cita</h2><p>Cuéntanos qué le pasa a tu equipo por WhatsApp y coordinamos día y hora.</p>
 <div class="cta-row"><a class="btn btn-primary btn-lg" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Escribir por WhatsApp</a><a class="ulink" href="tel:+59169470880">Llamar al +591 69470880</a></div>
 </div></div></section>
+<section class="band" id="ubicacion" style="padding-top:0"><div class="wrap ubic">
+<div class="ubic-info rise">
+<h2 class="h2">Dónde encontrarnos</h2>
+<p class="sub">Trae tu equipo al taller en Cochabamba.</p>
+<!-- Horario omitido en esta sección hasta confirmar el correcto (Google Maps y la web no coinciden). -->
+<ul class="ubic-datos">
+<li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><div><b>TECNODOLPHY</b><span class="ubic-dir">Miguel De Aguirre, Cochabamba, Bolivia</span></div></li>
+</ul>
+<a class="btn btn-white ubic-ir" href="https://www.google.com/maps/dir//TECNODOLPHY,+Miguel+De+Aguirre,+Cochabamba,+Bolivia/@-17.3773485,-66.1486814,21z/data=!4m16!1m7!3m6!1s0x93e375865e340c53:0xf0c50718aaab0bba!2sTECNODOLPHY!8m2!3d-17.3775027!4d-66.1486216!16s%2Fg%2F11zzx7bw4z!4m7!1m0!1m5!1m1!1s0x93e375865e340c53:0xf0c50718aaab0bba!2m2!1d-66.1486884!2d-17.377459?entry=ttu&amp;g_ep=EgoyMDI2MTExNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>Cómo llegar</a>
+</div>
+<div class="ubic-mapa rise" style="--i:1"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d237.98230865674756!2d-66.1486814!3d-17.3773485!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e375865e340c53%3A0xf0c50718aaab0bba!2sTECNODOLPHY!5e0!3m2!1ses!2sbo!4v1794944611261!5m2!1ses!2sbo" title="Mapa de Google con la ubicación de TECNODOLPHY en Cochabamba" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+</div></section>
 </main>
 
 <footer class="foot"><div class="wrap">
 <div class="fg">
 <div><a class="brand" href="#inicio" aria-label="TECNODOLPHY, inicio"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#logo"/></svg>TECNODOLPHY</a><p style="max-width:22rem">Soporte técnico para PCs y laptops en Cochabamba, Bolivia.</p></div>
 <div><h3>Servicios</h3><a href="#servicios" data-tab="t1">Equipo estándar</a><a href="#servicios" data-tab="t2">Equipo gamer</a><a href="#proceso">Cómo trabajamos</a></div>
-<div><h3>Sitio</h3><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a></div>
+<div><h3>Sitio</h3><a href="#nosotros">Nosotros</a><a href="#resenas">Reseñas</a><a href="#faq">Preguntas</a><a href="#ubicacion">Ubicación</a></div>
 <div><h3>Contacto</h3><a href="https://wa.me/59169470880" target="_blank" rel="noopener">WhatsApp +591 69470880</a><a href="https://www.facebook.com/profile.php?id=61582247163950" target="_blank" rel="noopener">Facebook</a><p>Lun a Sáb: 9:00 a 20:00<br>Dom: 10:00 a 18:00</p></div>
 </div><p class="foot-name" aria-hidden="true">TECNODOLPHY</p><p class="copy">© 2026 TECNODOLPHY. Todos los derechos reservados.</p></div></footer>
 <a class="wa" href="https://wa.me/59169470880?text=Buenas%20Tardes%20quisiera%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="Agendar por WhatsApp"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> <span>WhatsApp</span></a>
