@@ -435,6 +435,42 @@ html.modal-open{overflow:hidden}
 .ubic-mapa::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--surface-1);clip-path:var(--chip-md);border-radius:var(--radius) 0 var(--radius) var(--radius)}
 .ubic-mapa iframe{display:block;width:100%;height:100%;border:0;border-radius:4px;background:var(--surface-2)}
 @media(max-width:37.5em){.ubic-mapa{aspect-ratio:1}.ubic-ir{width:100%}}
+/* Placa de «Servicios y precios» (traída de proto/recorrido-visual): pistas que se iluminan al entrar.
+   El estado final dibujado es la composición estática: sin JS o con movimiento reducido se ve así */
+.placa-wrap{position:relative;margin-top:28px}
+.placa-luz{position:absolute;inset:0}
+.placa{display:block;width:100%;height:96px;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.p-base path,.p-componentes *{stroke:var(--surface-3);stroke-width:2}
+.p-componentes rect,.p-componentes circle{fill:var(--surface-1)}
+.p-luz{stroke-width:2.5}
+.p-luz.izq{stroke:var(--heat)}.p-luz.der{stroke:var(--cool)}
+.p-chip path{stroke:var(--surface-3);stroke-width:2}
+.p-chip rect{fill:var(--surface-1);stroke:var(--heat-ink);stroke-width:2}
+.p-chip .p-nucleo{fill:var(--surface-2);stroke:var(--cool)}
+@media(max-width:37.5em){.placa{height:72px}}
+@media(prefers-reduced-motion:no-preference){
+  /* la luz se revela con clip-path en cada SVG (se compone aparte); stroke-dashoffset repintaría la placa entera en cada fotograma */
+  .js .placa-wrap:not(.in) .placa-luz.izq{clip-path:inset(0 100% 0 0)}
+  .js .placa-wrap:not(.in) .placa-luz.der{clip-path:inset(0 0 0 100%)}
+  .js .placa-wrap.in .placa-luz.izq{animation:luz-izq 1s var(--ease-out) 120ms both}
+  .js .placa-wrap.in .placa-luz.der{animation:luz-der 1s var(--ease-out) 220ms both}
+  .js .placa-wrap:not(.in) .p-nucleo{opacity:.25}
+  .js .placa-wrap.in .p-nucleo{animation:encender 400ms var(--ease-out) 700ms both}
+}
+@keyframes luz-izq{from{clip-path:inset(0 100% 0 0)}}
+@keyframes luz-der{from{clip-path:inset(0 0 0 100%)}}
+@keyframes encender{from{opacity:.25}}
+/* Placa en modo Gamer: el núcleo se ilumina y un pulso cian sale del centro por las pistas (lo dispara el script
+   al cambiar a «Equipo gamer»). Pulso y brillo son capas aparte: solo se animan clip-path, opacity y transform */
+.placa-pulsos{position:absolute;inset:0;opacity:0;transition:opacity 150ms var(--ease-out);pointer-events:none}
+.placa-wrap.gamer .placa-pulsos{opacity:1}
+.placa-pulso{position:absolute;inset:0;clip-path:inset(0 50% 0 50%)}
+.placa-pulso .p-luz{stroke:#A8EDFF;stroke-width:5}
+.placa-nucleo-luz{position:absolute;left:50%;top:50%;width:40px;height:36px;margin:-18px 0 0 -20px;border-radius:3px;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(76,201,255,.95),rgba(76,201,255,.45)); /* sin halo: DESIGN.md reserva el único brillo al hero */
+  opacity:0;transform:scale(.92);transition:opacity 180ms var(--ease-out),transform 180ms var(--ease-out)}
+.placa-wrap.gamer .placa-nucleo-luz{opacity:.75;transform:none}
+@media(max-width:37.5em){.placa-nucleo-luz{width:30px;height:27px;margin:-13.5px 0 0 -15px}} /* la placa se escala a .75 con 72 px de alto */
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rise{transform:none}.js .rise.in{transition:opacity 150ms linear;transition-delay:0s}.btn:active{transform:none}*{transition-duration:0s!important}.js .rise.in{transition-duration:150ms!important}}
 </style>
 <script>
@@ -531,6 +567,12 @@ function hideShot(img){var f=img.closest('figure');if(f)f.remove();if(!document.
 <div class="head-row"><div><h2 class="h2">Servicios y precios</h2><p class="sub">Elige según el tipo de equipo. Pagas al terminar.</p></div>
 <div class="tabs" role="tablist" aria-label="Tipo de equipo" data-active="0"><span class="tab-ind" aria-hidden="true"></span><button class="tab" role="tab" id="t1" aria-selected="true" aria-controls="p1" tabindex="0">Equipo estándar</button><button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Equipo gamer</button></div></div>
 
+<div class="placa-wrap rise" aria-hidden="true"><svg class="placa" viewBox="0 0 1200 96" preserveAspectRatio="xMidYMid slice" focusable="false">
+<g class="p-base"><path d="M0 18H236l10 10H552"/><path d="M0 48H552"/><path d="M0 82H176l14-14H552"/><path d="M380 48v36"/><path d="M1200 18H964l-10 10H648"/><path d="M1200 48H648"/><path d="M1200 82H1024l-14-14H648"/><path d="M820 48V12"/></g>
+<g class="p-componentes"><rect x="420" y="42" width="26" height="12" rx="2"/><rect x="752" y="42" width="26" height="12" rx="2"/><circle cx="380" cy="86" r="5"/><circle cx="820" cy="10" r="5"/><circle cx="246" cy="28" r="3.5"/><circle cx="954" cy="28" r="3.5"/></g>
+<g class="p-chip"><path d="M566 12v-6M566 84v6"/><path d="M578 12v-6M578 84v6"/><path d="M590 12v-6M590 84v6"/><path d="M602 12v-6M602 84v6"/><path d="M614 12v-6M614 84v6"/><path d="M626 12v-6M626 84v6"/><path d="M638 12v-6M638 84v6"/><rect x="552" y="12" width="96" height="72" rx="6"/><rect class="p-nucleo" x="580" y="30" width="40" height="36" rx="3"/></g>
+</svg>
+<svg class="placa placa-luz izq" viewBox="0 0 1200 96" preserveAspectRatio="xMidYMid slice" focusable="false"><path class="p-luz izq" d="M0 18H236l10 10H552"/><path class="p-luz izq" d="M0 48H552"/><path class="p-luz izq" d="M0 82H176l14-14H552"/><path class="p-luz izq" d="M380 48v36"/></svg><svg class="placa placa-luz der" viewBox="0 0 1200 96" preserveAspectRatio="xMidYMid slice" focusable="false"><path class="p-luz der" d="M1200 18H964l-10 10H648"/><path class="p-luz der" d="M1200 48H648"/><path class="p-luz der" d="M1200 82H1024l-14-14H648"/><path class="p-luz der" d="M820 48V12"/></svg></div>
 <div id="p1" role="tabpanel" aria-labelledby="t1" tabindex="0"><p class="hint">Para PCs y laptops de uso diario y equipos más antiguos.</p><div class="plans">
 <article class="plan rise" style="--i:0"><div><h3>Software Estándar</h3><p class="d">Formateo, drivers y limpieza de virus.</p></div><p class="price"><b>40</b><i>Bs</i></p><ul class="inc"><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Formateo e instalación de Windows</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Drivers básicos</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Eliminación de virus</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Optimización básica</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Actualización del sistema</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Respaldo de datos</li></ul><button class="more" type="button" aria-expanded="false">Ver los 6 incluidos</button><a class="btn btn-white btn-block" href="https://wa.me/59169470880?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20Software%20Est%C3%A1ndar%20%2840bs%29.%0AEquipo%3A%20%0AFalla%20o%20motivo%3A%20%0AD%C3%ADa%20u%20horario%20preferido%3A%20" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar Software Estándar</a></article>
 <article class="plan rise" style="--i:1"><div><h3>Hardware Estándar</h3><p class="d">Limpieza interna y cambio de pasta térmica.</p></div><p class="price"><b>80</b><i>Bs</i></p><ul class="inc"><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Limpieza interna estándar</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Cambio de pasta térmica</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Diagnóstico de componentes</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Revisión de ventiladores</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Organización de cables</li><li><svg class="icon" aria-hidden="true"><use href="#ck"/></svg>Reporte de estado</li></ul><button class="more" type="button" aria-expanded="false">Ver los 6 incluidos</button><a class="btn btn-white btn-block" href="https://wa.me/59169470880?text=Hola%2C%20quisiera%20agendar%20una%20cita%20para%20Hardware%20Est%C3%A1ndar%20%2880bs%29.%0AEquipo%3A%20%0AFalla%20o%20motivo%3A%20%0AD%C3%ADa%20u%20horario%20preferido%3A%20" target="_blank" rel="noopener"><svg class="icon fill" aria-hidden="true"><use href="#i-whatsapp"/></svg> Agendar Hardware Estándar</a></article>
@@ -974,6 +1016,29 @@ document.querySelectorAll('.plan .more').forEach(function(b){b.addEventListener(
   // Si el usuario activa el movimiento reducido con la página abierta, se vuelve a la composición estática
   (rm.addEventListener?rm.addEventListener.bind(rm,'change'):rm.addListener.bind(rm))(function(e){if(!e.matches)return;
     removeEventListener('scroll',alDesplazar);sec.classList.remove('recorrido');fill.remove();pasos.forEach(function(li){li.classList.remove('activo','actual')})});
+})();
+// Placa de «Servicios y precios»: sigue el estado real de la pestaña «Equipo gamer» (clic, toque, teclado o enlace del pie).
+// Al pasar a Gamer: brillo del núcleo y un pulso cian del centro a los costados. Con movimiento reducido, solo el núcleo encendido.
+(function(){var tab=document.getElementById('t2'),w=document.querySelector('.placa-wrap');if(!tab||!w)return;
+  var rm=matchMedia('(prefers-reduced-motion: reduce)'),pulsos=document.createElement('div'),luz=document.createElement('span');
+  pulsos.className='placa-pulsos';luz.className='placa-nucleo-luz';pulsos.setAttribute('aria-hidden','true');luz.setAttribute('aria-hidden','true');
+  w.querySelectorAll('.placa-luz').forEach(function(sv){var c=sv.cloneNode(true);c.setAttribute('class','placa placa-pulso '+(sv.classList.contains('izq')?'izq':'der'));pulsos.appendChild(c)}); // las mismas pistas
+  w.appendChild(pulsos);w.appendChild(luz);
+  // el núcleo se enciende con ease-out fuerte; el pulso viaja a ritmo casi parejo para verse en todo el trayecto
+  var CURVA='cubic-bezier(.23,1,.32,1)',VIAJE='cubic-bezier(.3,.45,.45,1)',RECORRIDO={
+    izq:[{clipPath:'inset(0 50% 0 40%)',opacity:1},{opacity:1,offset:.75},{clipPath:'inset(0 90% 0 0%)',opacity:0}],
+    der:[{clipPath:'inset(0 40% 0 50%)',opacity:1},{opacity:1,offset:.75},{clipPath:'inset(0 0% 0 90%)',opacity:0}]};
+  function cancelar(el){el.getAnimations().forEach(function(a){a.cancel()})}
+  function pulso(){
+    luz.style.opacity=luz.style.transform='';cancelar(luz);
+    luz.animate([{opacity:.4,transform:'scale(.92)'},{opacity:1,transform:'scale(1.06)',offset:.15},{opacity:.75,transform:'none'}],{duration:700,easing:CURVA});
+    pulsos.querySelectorAll('.placa-pulso').forEach(function(sv){cancelar(sv);sv.animate(RECORRIDO[sv.classList.contains('izq')?'izq':'der'],{duration:680,delay:60,easing:VIAJE})})}
+  function apagar(){ // al volver a Estándar: el brillo parte de donde iba y se apaga con la transición breve
+    luz.getAnimations().forEach(function(a){try{a.commitStyles()}catch(e){}a.cancel()});
+    requestAnimationFrame(function(){luz.style.opacity=luz.style.transform=''})}
+  var gamer=tab.getAttribute('aria-selected')==='true';w.classList.toggle('gamer',gamer);
+  new MutationObserver(function(){var g=tab.getAttribute('aria-selected')==='true';if(g===gamer)return;gamer=g;
+    w.classList.toggle('gamer',g);if(!g)apagar();else if(!rm.matches)pulso()}).observe(tab,{attributes:true,attributeFilter:['aria-selected']});
 })();
 // miniweb: puntos de luz que dibujan un monitor con una ventana de diagnóstico.
 // Escritorio: se ensamblan al entrar, derivan en reposo y reaccionan al cursor. Táctil o movimiento reducido: dibujo estático.
