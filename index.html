@@ -865,10 +865,10 @@ document.addEventListener('keydown',function(e){
   else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
 });
 (function(){var wa=document.querySelector('.wa');if(!wa||!('IntersectionObserver' in window))return;
-  var vis=new Set(),movil=matchMedia('(max-width:37.5em)'),metodo=document.querySelector('.metodo');
-  function actualizar(){wa.classList.toggle('hide',Array.from(vis).some(function(el){return el!==metodo||movil.matches}))}
+  var vis=new Set(),movil=matchMedia('(max-width:37.5em)'),soloMovil='.metodo,#ubicacion .ubic-mapa';
+  function actualizar(){wa.classList.toggle('hide',Array.from(vis).some(function(el){return movil.matches||!el.matches(soloMovil)}))}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)vis.add(e.target);else vis.delete(e.target)});actualizar()},{threshold:.1});
-  document.querySelectorAll('.hero .cta-row,#servicios,#atencion,.cta,#desarrollo .btn,.metodo').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.hero .cta-row,#servicios,#atencion,.cta,#desarrollo .btn,'+soloMovil).forEach(function(el){io.observe(el)});
   if(movil.addEventListener)movil.addEventListener('change',actualizar);
 })();
 document.getElementById('userAvatar').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUserDropdown()}});
